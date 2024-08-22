@@ -7,11 +7,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const user = document.getElementById('user').value.trim();
     const password = document.getElementById('password').value.trim();
 
-    if (!user || !password) {
-        alert('Completar todos los campos'); //Modificar, en vez de alerta hacer un cartel
-    }else {
-        form.submit(); 
-        window.location.href = "http://127.0.0.1:5500/index.html";
+    document.getElementById("get_into").onclick = function() {
+        if (!user || !password) {
+            alert('Completar todos los campos'); 
+        } else {
+                window.location.href = 'index.html';   
+        }
     }
 });
 });
