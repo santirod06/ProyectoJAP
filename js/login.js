@@ -1,18 +1,29 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const button_ingresar= document.getElementById("get_into");
-    button_ingresar.addEventListener("click", function(event) {
-    event.preventDefault(); 
-
-    const form= document.getElementById("form_login");
-    const user = document.getElementById('user').value.trim();
-    const password = document.getElementById('password').value.trim();
-
-    document.getElementById("get_into").onclick = function() {
-        if (!user || !password) {
-            alert('Completar todos los campos'); 
-        } else {
-                window.location.href = 'index.html';   
-        }
-    }
-});
-});
+    let alertDanger = document.getElementById("alert-danger");
+    let btnCloseAlert = document.getElementById("btn-close-alert");
+     function showAlertError() {
+         alertDanger.style = "display:block; opacity: 1";
+     }
+     
+     function closeAlert() {
+             alertDanger.style.display = "none";
+             alertDanger.classList.remove('show'); 
+         }
+      btnCloseAlert.addEventListener("click", closeAlert);
+     
+ 
+ document.getElementById("get_into").addEventListener("click", function(event) {
+     event.preventDefault(); 
+ 
+     const user = document.getElementById('user').value.trim();
+     const password = document.getElementById('password').value.trim();
+ 
+     if (!user || !password) {
+         showAlertError(); 
+     } else {
+         window.location.href = 'index.html';   
+     }
+ });
+ });
+ 
+ 
