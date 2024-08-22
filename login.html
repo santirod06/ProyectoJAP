@@ -9,9 +9,11 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  
+  <link href="css/login.css" rel="stylesheet">
 </head>
 
-<body>
+<body id="body_login">
   <main class="mt-5">
     <div class="container" id="container_flexbox">
       <form action="" class="login" id="form_login">
@@ -38,6 +40,10 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+  <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger" style="display:none;">
+    <p>Complete todos los campos solicitados</p>
+    <button type="button" class="btn-close" aria-label="Close" id="btn-close-alert"></button>
+</div>
   <script src="js/login.js"></script>
 </body>
 
