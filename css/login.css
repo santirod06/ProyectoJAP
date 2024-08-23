@@ -1,4 +1,4 @@
-.jumbotron,
+/*.jumbotron,
 .card-body,
 .container,
 .site-header {
@@ -187,7 +187,7 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
-}
+}*/
 
 #body_login {
     background-image: url(../img/login.png);
