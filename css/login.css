@@ -1,60 +1,82 @@
+/*Cambio todas las medidas absolutas a sus equivalentes relativas*/
+/*Realizo cambios para centrar la imagen de fondo*/ 
 #body_login {
-    background-image: url(../img/login.png);
-    background-size: cover;
-    backdrop-filter: blur(4px);
-  }
+  background-image: url(../img/login.png);
+  max-width: 100%;
+  height: auto;
+  background-attachment: fixed; /*Imagen de fondo fija*/
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(4px);
+}
+
   /* Doy estilo a las imágenes del login */
   .login_user{
-    width: 40px;
-    height: 40px;
-    margin: 20px;
-    margin-left: 2px;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 1.25rem;
+    margin-left: 0.0625rem;
     float: left;
-    border: 3px solid white;
+    border: 0.1875rem solid white;
     background-color: white;
   }
-  
+
   /* Doy estilo al contenedor del formulario */
   #container_flexbox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  /*Centro el contenedor del formulario en la página*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
   
   /* Doy estilo al formulario de login */
-  .login {
-    background-image: url(../img/abstract-orange-background-layout-design-studio-room-web-template-business-report-with-smooth-circle-gradient-color.jpg);
-    padding: 20px;
-    width: 300px;
-    box-sizing: border-box;
-  }
+ .login {
+  background-image: url(../img/abstract-orange-background-layout-design-studio-room-web-template-business-report-with-smooth-circle-gradient-color.jpg);
+  padding: 1.25rem;
+  width: 18.75rem;
+  height: auto;
+  box-sizing: border-box;
+}
   
-  .container_login {
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
+.container_login {
+  margin-bottom: 0.625rem;
+  display: flex;
+  align-items: center;
+}
+
+.container_login p {
+  margin: 0;
+  width: 100%;
+}
   
-  .container_login p {
-    margin: 0;
-    width: 100%;
-  }
+.container_login input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.625rem;
+  border: 0.0625rem solid white;
+}
   
-  .container_login input {
-    width: 100%;
-    height: 40px;
-    padding: 10px;
-    border: 1px solid white;
+#get_into {
+  width: 100%;
+  padding: 0.625rem;
+  background-color: #ff8800;
+  color: #ffffff;
+  border: none;
+  margin: 1.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Prueba responsive con Media Queries*/
+@media only screen and (max-width: 768px) {
+  .login { 
+    width: 22rem;
+    height: 24rem;
   }
-  
-  #get_into {
-    width: 100%;
-    padding: 10px;
-    background-color: #ff8800;
-    color: #ffffff;
-    border: none;
-    margin: 20px;
-    cursor: pointer;
-    font-size: 16px;
-  }
+}
