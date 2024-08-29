@@ -10,7 +10,21 @@
 }
 
 nav a {
+  display: flex;
   text-decoration: none;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+ 
+#usuario {
+  margin-left: auto; /* Empuja el elemento #user al final del contenedor */
+  text-align: center; /* Centra el texto dentro del elemento #user */
+  color: white;
+  font-family: 'Verdana', serif !important;
+
 }
 
 .bd-placeholder-img {
