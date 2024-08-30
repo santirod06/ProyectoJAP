@@ -78,23 +78,71 @@
 @media only screen and (max-width: 768px) {
   .login { 
     width: 22rem;
-    height: 20rem;
+    height: 27rem;
   }
+ #container_flexbox{
+    height: 115%;
+}
+.login{
+  height: 38%;
+}
+.container_login {
+  height: 30%;
+}
+}
 
 /*Celular*/
-@media only screen and (max-width: 568px) {
-    #form_login {
-      height: 53%;
-      width: 80%;
+@media only screen and (max-width: 320px) {
+   /*Ajustes para el tamaño del login en el teléfono*/
+  .login {
+     height: 18rem;
+     padding: 1rem;
     }
+    /*Ajustes tamaño del contenedor del login*/
+    #container_flexbox{
+      width: 90%;
+    }
+    /*Reducir espacio entre el elementos del login*/
+  .container_login{
+    margin-bottom: 0.10rem;
   }
+  /*Mejorar el footer*/
+    #footer {
+   margin-top: 5rem;
+    }
+  
+  #footer p {
+  width: 100%;
+  max-width: 120px;
+  text-align: center;
+  font-size: 0.9rem;
+  }
+  /*Ajuste para que en el teléfono el login no se vea tan abajo*/
+  #container_flexbox{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+}
 
-  body {
-    font-size: 0.6rem;
+/*Ajuste para pantallas grandes: tablet y estándar*/
+@media only screen and (min-width: 768px) {
+  #footer p{
+    font-size: 1.5rem;
+  }.login_user {
+    height: 4rem;
+    width: 4rem;
   }
+  .container_login input, #get_into {
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+}
 
-  #footer {
-    position: relative;
-    bottom: -3rem;
-  }
+/*Ajuste sólo para pantalla estándar*/
+@media only screen and (max-width: 1366px){
+  .login {
+    width: 24rem;
+   }
 }
