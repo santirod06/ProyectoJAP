@@ -138,6 +138,10 @@
     height: 4rem;
     font-size: 1.5rem;
   }
+   /*Aumento el blur para pantallad grandes para visualizar mejor el contenido*/
+  #body_login{
+  backdrop-filter: blur(8px);
+}
 }
 
 /*Ajuste sólo para pantalla estándar*/
