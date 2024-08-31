@@ -100,6 +100,11 @@
   height: 4rem;
   font-size: 1.5rem;
 }
+  /*Aumento tamaño de la fuente de la alerta para mejor visualización*/
+  .alert p{
+  font-size: 1.5rem;
+  text-align: center;
+}
 /*Aumento el blur para visualizar mejor el contenido*/
 #body_login{
   backdrop-filter: blur(7px);
