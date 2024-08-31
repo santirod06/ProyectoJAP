@@ -73,6 +73,12 @@
   cursor: pointer;
   font-size: 1rem;
 }
+#footer {
+  margin-top: 4.5rem;
+   }
+#footer p {
+   text-align: center;
+   }
 
 /*Tablet*/
 @media only screen and (min-width: 321px) and (max-width: 768px) {
@@ -80,6 +86,7 @@
     width: 22rem;
     height: 27rem;
   }
+  
  #container_flexbox{
     height: 115%;
 }
@@ -100,8 +107,7 @@
   height: 4rem;
   font-size: 1.5rem;
 }
-  /*Aumento tamaño de la fuente de la alerta para mejor visualización*/
-  .alert p{
+.alert p{
   font-size: 1.5rem;
   text-align: center;
 }
@@ -109,6 +115,9 @@
 #body_login{
   backdrop-filter: blur(7px);
 }
+#footer {
+  margin-top: 2.5rem;
+   }
 }
 
 /*Celular*/
@@ -128,15 +137,11 @@
   }
   /*Mejorar el footer*/
     #footer {
-   margin-top: 5rem;
+   margin-top: 3.5rem;
     }
-  
-  #footer p {
-  width: 100%;
-  max-width: 120px;
-  text-align: center;
-  font-size: 0.9rem;
-  }
+    #footer p {
+       font-size: 0.9rem;
+       }
   /*Ajuste para que en el teléfono el login no se vea tan abajo*/
   #container_flexbox{
     position: absolute;
