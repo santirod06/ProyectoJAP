@@ -75,7 +75,7 @@
 }
 
 /*Tablet*/
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 321px) and (max-width: 768px) {
   .login { 
     width: 22rem;
     height: 27rem;
@@ -88,6 +88,21 @@
 }
 .container_login {
   height: 30%;
+}
+#footer p{
+  font-size: 1.5rem;
+}
+.login_user {
+  height: 4rem;
+  width: 4rem;
+}
+.container_login input, #get_into {
+  height: 4rem;
+  font-size: 1.5rem;
+}
+/*Aumento el blur para visualizar mejor el contenido*/
+#body_login{
+  backdrop-filter: blur(7px);
 }
 }
 
@@ -124,29 +139,4 @@
     left: 50%;
     transform: translate(-50%, -50%)
   }
-}
-
-/*Ajuste para pantallas grandes: tablet y estándar*/
-@media only screen and (min-width: 768px) {
-  #footer p{
-    font-size: 1.5rem;
-  }.login_user {
-    height: 4rem;
-    width: 4rem;
-  }
-  .container_login input, #get_into {
-    height: 4rem;
-    font-size: 1.5rem;
-  }
-   /*Aumento el blur para pantallad grandes para visualizar mejor el contenido*/
-  #body_login{
-  backdrop-filter: blur(8px);
-}
-}
-
-/*Ajuste sólo para pantalla estándar*/
-@media only screen and (max-width: 1366px){
-  .login {
-    width: 24rem;
-   }
 }
