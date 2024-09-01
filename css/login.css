@@ -82,22 +82,16 @@
 
 /*Tablet*/
 @media only screen and (min-width: 321px) and (max-width: 768px) {
+  /*Mejora en la visualización del login*/
   .login { 
     width: 22rem;
     height: 27rem;
   }
-  
  #container_flexbox{
     height: 115%;
 }
-.login{
-  height: 38%;
-}
 .container_login {
   height: 30%;
-}
-#footer p{
-  font-size: 1.5rem;
 }
 .login_user {
   height: 4rem;
@@ -107,6 +101,14 @@
   height: 4rem;
   font-size: 1.5rem;
 }
+  /*Mejora en la visualización del footer*/
+#footer {
+  margin-top: 2.5rem;
+   }
+#footer p{
+  font-size: 1.5rem;
+}
+  /*Mejora visualización alert*/
 .alert p{
   font-size: 1.5rem;
   text-align: center;
@@ -115,9 +117,6 @@
 #body_login{
   backdrop-filter: blur(7px);
 }
-#footer {
-  margin-top: 2.5rem;
-   }
 }
 
 /*Celular*/
