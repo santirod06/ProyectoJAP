@@ -269,7 +269,9 @@ a.custom-card:hover {
     width: 157px; 
     height: 109px; 
   }
-
+  .card-title{
+    font-size: 12px;
+  }
   .card-text{
     font-size: 8px;
   }
@@ -280,13 +282,14 @@ a.custom-card:hover {
   }
 
 }
-
+/* MODO TABLET 768x1024px */
 @media (min-width: 569px) and (max-width: 768px) {
+  /* Modifica dimensiones del titulo */
   .title{
     width: 672px;
     height: 63px;
   }
-  /* Modifica el container principal */
+  /* Modifica el estilo del container principal */
   .flex-container{
     display: flex;
     padding: 30px;
@@ -315,6 +318,7 @@ a.custom-card:hover {
     font-size: 10px;
   }
 }
+/* MODO ESTANDAR 1366x768px */
 @media (min-width: 769px){
   /* Modifica el titulo */
   .title{
