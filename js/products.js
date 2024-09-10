@@ -1,6 +1,10 @@
+
+
 function loadProducts() {
 
-    fetch('https://japceibal.github.io/emercado-api/cats_products/101.json')
+    let categoriaID = localStorage.getItem("catID");
+
+    fetch('https://japceibal.github.io/emercado-api/cats_products/'+categoriaID+'.json')
     
     .then(response => {
         if (!response.ok) {
