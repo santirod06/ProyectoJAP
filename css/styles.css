@@ -471,3 +471,35 @@ a.custom-card:hover {
   }
 
 }
+
+/*Slider para filtro de precio*/
+.slider {
+  margin: 20px 0;
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.manual-inputs {
+text-align: center;
+}
+/*botones orden*/
+.sort-buttons { /* Estilo para alinear los botones a la derecha */
+text-align: right;
+padding: 10px; /* Añade un poco de espacio alrededor del contenedor */
+}
+
+/* Estilo para los botones */
+.sort-buttons button {
+background: none; /* Elimina el fondo del botón por defecto */
+border: none; /* Elimina el borde del botón por defecto */
+padding: 0; /* Elimina el padding por defecto */
+margin-left: 10px; /* Añade espacio entre los botones */
+}
+
+/* Estilo para las imágenes dentro de los botones */
+.sort-buttons img {
+width: 2.5rem; /* Ajusta el tamaño de la imagen según lo necesites */
+height: 2.5rem; /* Mantiene la proporción de la imagen */
+}
