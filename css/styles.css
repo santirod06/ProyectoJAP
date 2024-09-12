@@ -203,10 +203,18 @@ a.custom-card:hover {
   color: orange;
 }
 
+/* ID agregado al buscador en la linea 47 de products.html */
+#search {
+  width: 300px;
+  height: 24px;
+  font-size: 14px;
+}
+
 /*Agregado a la linea 42 products.html */
 .title{
+  padding: 20px;
   text-align: center;
-  font-size: 34px;
+  font-size: 24px;
   display: flex;
   border: 1px solid black;
   width: 1272px;
@@ -250,10 +258,15 @@ a.custom-card:hover {
     height: 40px;
     font-size: 18px;
   }
+  #search{
+    width: 45%;
+    height: 1%;
+    font-size: 10px;
+  }
   
   .flex-container {
     flex-direction: column; 
-    padding: 5px; 
+    padding: 15px; 
   }
 
   .flex-container > div {
@@ -289,6 +302,10 @@ a.custom-card:hover {
     width: 672px;
     height: 63px;
   }
+  #search{
+    width: 50%;
+    margin-top: 5px;
+  }
   /* Modifica el estilo del container principal */
   .flex-container{
     display: flex;
@@ -299,6 +316,7 @@ a.custom-card:hover {
     width: 290px;
     height: 260px;
     box-sizing: border-box;
+    border-radius: 4px;
   }
   /* Modifica las dimensiones de las fotos de los productos */
   .flex-container > div > img{
@@ -322,20 +340,27 @@ a.custom-card:hover {
 @media (min-width: 769px){
   /* Modifica el titulo */
   .title{
-    width: 1100px;
-    height: 61px;
+    width: 100%;
+    height: 30px;
     margin: auto;
+  }
+  #search{
+    width: 40%;
+    margin-top: 10px;
+    margin-left: 60px;
+    font-size: 18px;
   }
   /* Modifica el container principal */
   .flex-container{
     display: flex;
-    padding: 30px;
+    padding: 10px;
   }
   /* Modifica las dimensiones del area de cada producto */
   .flex-container > div {
     width: 500px;
     height: 290px;
     box-sizing: border-box;
+    border-radius: 4%;
   }
   /* Modifica las dimensiones de las fotos de los productos */
   .flex-container > div > img{
