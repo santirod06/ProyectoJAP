@@ -4,15 +4,6 @@ let originalProductsData = []; // Variable global para almacenar los productos o
 function loadProducts() {
     let categoriaID = localStorage.getItem("catID");
 
-    // Verificar si categoriaID está presente
-    /*if (!categoriaID) {
-        console.error('No se encontró un ID de categoría en el almacenamiento local.');
-        document.getElementById('product-list').innerHTML = '<p>No se encontró la categoría de productos.</p>';
-        return;
-    }
-
-    console.log("Cargando productos con Categoria ID:", categoriaID);*/
-
     fetch('https://japceibal.github.io/emercado-api/cats_products/' + categoriaID + '.json')
         .then(response => {
             if (!response.ok) {
