@@ -34,13 +34,14 @@ function displayProducts(products) {
         let product = products[i];
         let price = (typeof product.cost === 'number' && !isNaN(product.cost)) ? product.cost.toLocaleString() : 'N/A';
         let soldCount = (typeof product.soldCount === 'number') ? product.soldCount : 'N/A';
+        let currency = product.currency ? product.currency : 'UYU'; // Usar 'UYU' como valor por defecto si currency no está definido
         htmlContentToAppend += `
             <div class="card mb-4 product" data-id="${product.id}" data-price="${product.cost}">
                 <img src="${product.image}" class="card-img-top" alt="${product.name}">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
-                    <p class="card-text">Precio: $USD ${price}</p>
+                    <p class="card-text">Precio: ${currency} ${price}</p>
                     <p class="card-text">Cantidad Vendidos: ${soldCount}</p>
                 </div>
             </div>
