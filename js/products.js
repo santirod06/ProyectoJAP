@@ -67,22 +67,49 @@ function displayProducts(products) {
 }
 
 function initializeSlider() {
+    // Función para obtener el precio máximo de los productos
+    const maxProductPrice = getMaxProductPrice();
     $("#price-slider").slider({
-        range: true,
+        range: true, //Rango de valores
         min: 0,
-        max: 4000000,
-        values: [0, 4000000],
-        slide: function(event, ui) {
+        max: maxProductPrice, // Usa el precio máximo de producto 
+        values: [0, maxProductPrice], // Inicializa el slider con el rango completo
+        slide: function(event, ui) { //Evento que se dispara cuando el usuario mueve el control del slider.
             // Actualiza los textos de los precios
             $("#min-price").text(`${currency} ${ui.values[0].toLocaleString()}`);
             $("#max-price").text(`${currency} ${ui.values[1].toLocaleString()}`);
-            // Actualiza los valores de los campos de entrada
+            // Actualiza los valores de los campos de texto de entrada
             $("#min-price-input").val(ui.values[0]);
             $("#max-price-input").val(ui.values[1]);
             // Filtra los productos en función del rango del slider
             filterProducts(ui.values[0], ui.values[1]);
         }
     });
+
+     // Configura los valores iniciales en los campos de entrada para que coincidan con el slider
+     $("#min-price-input").val(0);
+     $("#max-price-input").val(maxProductPrice);
+
+     // Configura el evento para el botón de filtrar
+    $("#apply-price-range").on("click", function() {
+        /*Obtiene el valor actual del campo de entrada como cadena de texto y la convierte en un número entero en base decimal*/
+        const minPrice = parseInt($("#min-price-input").val(), 10); 
+        const maxPrice = parseInt($("#max-price-input").val(), 10);
+        $("#price-slider").slider("values", [minPrice, maxPrice]);
+        $("#min-price").text(`${currency} ${minPrice.toLocaleString()}`); //Se actualizan los campos de texto de los precios
+        $("#max-price").text(`${currency} ${maxPrice.toLocaleString()}`);
+        filterProducts(minPrice, maxPrice);
+    });
+
+    function getMaxProductPrice() {
+        // Revisar si productsData está vacío
+        if (productsData.length === 0) {
+            return 0; // Si no hay productos, el precio máximo es 0
+        }
+        // Encontrar el precio máximo en productsData
+        let maxPrice = Math.max(...productsData.map(product => parseFloat(product.cost))); //Nuevo array que contiene todos los precios de los productos convertidos a números.
+        return maxPrice;
+    }
 
     // Inicializa los valores de los campos de entrada con los valores actuales del slider
     $("#min-price-input").val($("#price-slider").slider("values", 0));
