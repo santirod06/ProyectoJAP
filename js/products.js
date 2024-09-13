@@ -1,5 +1,6 @@
 let productsData = []; // Variable global para almacenar los productos
 let originalProductsData = []; // Variable global para almacenar los productos originales
+let currency = 'UYU'; // Valor por defecto para la moneda
 
 function loadProducts() {
     let categoriaID = localStorage.getItem("catID");
@@ -12,10 +13,12 @@ function loadProducts() {
             return response.json();
         })
         .then(data => {
-            //console.log("Datos de productos:", data);
             console.log(data);
             productsData = data.products;// Guardar productos en la variable global
             originalProductsData = [...productsData];// Guardar una copia de los productos originales
+            if (productsData.length > 0) {
+                currency = productsData[0].currency || 'UYU'; // Obtener la moneda del primer producto
+            }
             displayProducts(productsData);// Mostrar los productos cargados
             initializeSlider();// Inicializar el slider después de que se carguen los productos
             initializeSearch();
@@ -34,7 +37,7 @@ function displayProducts(products) {
         let product = products[i];
         let price = (typeof product.cost === 'number' && !isNaN(product.cost)) ? product.cost.toLocaleString() : 'N/A';
         let soldCount = (typeof product.soldCount === 'number') ? product.soldCount : 'N/A';
-        let currency = product.currency ? product.currency : 'UYU'; // Usar 'UYU' como valor por defecto si currency no está definido
+        let currency = product.currency ? product.currency : currency; // Usar la moneda del producto si está definida
         htmlContentToAppend += `
             <div class="card mb-4 product" data-id="${product.id}" data-price="${product.cost}">
                 <img src="${product.image}" class="card-img-top" alt="${product.name}">
@@ -71,8 +74,8 @@ function initializeSlider() {
         values: [0, 4000000],
         slide: function(event, ui) {
             // Actualiza los textos de los precios
-            $("#min-price").text(`$USD ${ui.values[0].toLocaleString()}`);
-            $("#max-price").text(`$USD ${ui.values[1].toLocaleString()}`);
+            $("#min-price").text(`${currency} ${ui.values[0].toLocaleString()}`);
+            $("#max-price").text(`${currency} ${ui.values[1].toLocaleString()}`);
             // Actualiza los valores de los campos de entrada
             $("#min-price-input").val(ui.values[0]);
             $("#max-price-input").val(ui.values[1]);
@@ -85,8 +88,8 @@ function initializeSlider() {
     $("#min-price-input").val($("#price-slider").slider("values", 0));
     $("#max-price-input").val($("#price-slider").slider("values", 1));
 
-    $("#min-price").text(`$USD ${$("#price-slider").slider("values", 0).toLocaleString()}`);
-    $("#max-price").text(`$USD ${$("#price-slider").slider("values", 1).toLocaleString()}`);
+    $("#min-price").text(`${currency} ${$("#price-slider").slider("values", 0).toLocaleString()}`);
+    $("#max-price").text(`${currency} ${$("#price-slider").slider("values", 1).toLocaleString()}`);
 
     // Filtrar productos al cargar la página
     filterProducts($("#price-slider").slider("values", 0), $("#price-slider").slider("values", 1));
@@ -174,8 +177,8 @@ function applyPriceRange() {
     let maxPrice = parseFloat(document.getElementById('max-price-input').value) || 4000000;
 
     $("#price-slider").slider("values", [minPrice, maxPrice]);
-    $("#min-price").text(`$USD ${minPrice.toLocaleString()}`);
-    $("#max-price").text(`$USD ${maxPrice.toLocaleString()}`);
+    $("#min-price").text(`${currency} ${minPrice.toLocaleString()}`);
+    $("#max-price").text(`${currency} ${maxPrice.toLocaleString()}`);
     filterProducts(minPrice, maxPrice);
 }
 
