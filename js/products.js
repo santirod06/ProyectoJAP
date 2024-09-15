@@ -2,6 +2,7 @@ let productsData = []; // Variable global para almacenar los productos
 let originalProductsData = []; // Variable global para almacenar los productos originales
 let currency = 'UYU'; // Valor por defecto para la moneda
 
+// Función para cargar los productos
 function loadProducts() {
     let categoriaID = localStorage.getItem("catID");
 
@@ -29,6 +30,7 @@ function loadProducts() {
         });
 }
 
+// Función para mostrar los productos
 function displayProducts(products) {
     let productList = document.getElementById('product-list');
     let htmlContentToAppend = '';
@@ -66,6 +68,7 @@ function displayProducts(products) {
     });
 }
 
+// Función para inicializar el slider de precios
 function initializeSlider() {
     // Función para obtener el precio máximo de los productos
     const maxProductPrice = getMaxProductPrice();
@@ -122,6 +125,7 @@ function initializeSlider() {
     filterProducts($("#price-slider").slider("values", 0), $("#price-slider").slider("values", 1));
 }
 
+// Función para filtrar los productos por rango de precio definido
 function filterProducts(minPrice, maxPrice) {
     // Filtrar los productos basados en el rango de precios
     let filteredProducts = productsData.filter(product => {
@@ -132,6 +136,7 @@ function filterProducts(minPrice, maxPrice) {
     displayProducts(filteredProducts);
 }
 
+// Función para inicializar la búsqueda
 function initializeSearch() {
     // Asignamos el evento de filtro al campo de búsqueda
     const searchInput = document.getElementById('search');
@@ -146,6 +151,7 @@ function initializeSearch() {
     });
 }
 
+//Función para ordenar los productos con tres botones
 function sortProducts(sortBy) {
     if (sortBy === 'price-asc') {
         productsData.sort((a, b) => a.cost - b.cost);
@@ -157,9 +163,21 @@ function sortProducts(sortBy) {
     displayProducts(productsData);// Actualizar la lista mostrada
 }
 
+//Función para restablecer el orden original
 function restoreOriginalOrder() {
     productsData = [...originalProductsData];// Restaurar la lista original
     displayProducts(productsData);// Mostrar productos en el orden original
+}
+
+// Función para aplicar el rango de precios
+function applyPriceRange() {
+    let minPrice = parseFloat(document.getElementById('min-price-input').value) || 0;
+    let maxPrice = parseFloat(document.getElementById('max-price-input').value) || 4000000;
+
+    $("#price-slider").slider("values", [minPrice, maxPrice]);
+    $("#min-price").text(`${currency} ${minPrice.toLocaleString()}`);
+    $("#max-price").text(`${currency} ${maxPrice.toLocaleString()}`);
+    filterProducts(minPrice, maxPrice);
 }
 
 // Configuración de los botones de ordenación
@@ -199,17 +217,7 @@ document.getElementById('max-price-input').addEventListener('keypress', function
     }
 });
 
-function applyPriceRange() {
-    let minPrice = parseFloat(document.getElementById('min-price-input').value) || 0;
-    let maxPrice = parseFloat(document.getElementById('max-price-input').value) || 4000000;
-
-    $("#price-slider").slider("values", [minPrice, maxPrice]);
-    $("#min-price").text(`${currency} ${minPrice.toLocaleString()}`);
-    $("#max-price").text(`${currency} ${maxPrice.toLocaleString()}`);
-    filterProducts(minPrice, maxPrice);
-}
-
-// Limpiar campos de texto
+// Limpiar campos de texto del filtrado de precio
 const cajasDeTexto = document.querySelectorAll('#min-price-input, #max-price-input');// Selecciona las cajas de texto
 function borrarContenido(event) {// Función que borra el contenido de la caja de texto
     event.target.value = '';
@@ -219,6 +227,7 @@ cajasDeTexto.forEach(caja => {
     caja.addEventListener('focus', borrarContenido);
 });
 
+// Cargar productos al iniciar la página
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
 });
