@@ -18,7 +18,7 @@ nav a {
   align-items: center;
 }
 
- 
+
 #usuario {
   margin-left: auto; /* Empuja el elemento #user al final del contenedor */
   text-align: center; /* Centra el texto dentro del elemento #user */
@@ -594,3 +594,22 @@ a.custom-card:hover {
 
 }
 
+/*Estilos para el campo de calificación de un produto*/
+.rating {
+  direction: rtl; /* Para invertir la dirección de los estrellas */
+}
+.rating input {
+  display: none; /* Ocultar el input */
+}
+.rating label {
+  font-size: 2rem; /* Tamaño de las estrellas */
+  color: lightgray;
+  cursor: pointer;
+}
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold; /* Color al pasar el mouse */
+}
+.rating input:checked ~ label {
+  color: gold; /* Color de las estrellas seleccionadas */
+}
