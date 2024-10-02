@@ -613,3 +613,6 @@ a.custom-card:hover {
 .rating input:checked ~ label {
   color: gold; /* Color de las estrellas seleccionadas */
 }
+#comments-container {
+  text-align: left;
+}

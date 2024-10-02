@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Obtén el ID del producto del almacenamiento local
     const productId = localStorage.getItem('selectedProductId');
-    
+
     // Verifica si el ID existe
     if (productId) {
         // Hacer una solicitud para obtener la información del producto
@@ -24,29 +24,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 const carouselItemsContainer = document.getElementById('carousel-items');
                 if (product.images && Array.isArray(product.images)) {
                     product.images.forEach((imageUrl, index) => {
-                        // Crear un nuevo div para cada item del carrusel
                         const itemDiv = document.createElement('div');
                         itemDiv.classList.add('carousel-item');
-                        
-                        // Si es la primera imagen, le damos la clase 'active'
+
                         if (index === 0) {
                             itemDiv.classList.add('active');
                         }
 
-                        // Crear la imagen y asignarle el src
                         const imgElement = document.createElement('img');
                         imgElement.src = imageUrl;
                         imgElement.classList.add('d-block', 'w-100');
                         imgElement.alt = `Imagen ${index + 1}`;
 
-                        // Añadir la imagen al item del carrusel
                         itemDiv.appendChild(imgElement);
-
-                        // Añadir el item al contenedor del carrusel
                         carouselItemsContainer.appendChild(itemDiv);
                     });
                 } else {
-                    // Si no hay imágenes, mostrar un mensaje alternativo
                     const noImagesMessage = document.createElement('p');
                     noImagesMessage.textContent = 'No hay imágenes disponibles';
                     carouselItemsContainer.appendChild(noImagesMessage);
@@ -55,7 +48,48 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => {
                 console.error('Error al obtener la información del producto:', error);
             });
+
+        // Parte de enviar y escribir comentarios
+        const sendButton = document.querySelector('.btn-primary'); // Creamos una constante para el boton de enviar
+        sendButton.addEventListener('click', () => { // Le añadimos funcionalidad
+            const nameInput = document.getElementById('input-name').value; 
+            const dateInput = document.getElementById('input-date').value;          // Creamos una constante para obtener //
+            const opinionInput = document.querySelector('textarea').value;          // Cada una de las casillas que llenamos //                 
+            const ratingInput = document.querySelector('input[name="rating"]:checked'); 
+
+            if (nameInput && dateInput && opinionInput && ratingInput) { // verificamos si todos los campos estan completos
+                const score = ratingInput.value; // hay que guardarlo en una constante porque sino se rompe 
+
+                const newComment = { // creamos un objeto con la informacion correspondiente del
+                    user: nameInput,
+                    dateTime: dateInput,
+                    description: opinionInput,
+                    score: score 
+                };
+
+                const commentDiv = document.createElement('div'); // crea un nuevo div donde se mostrara el comentario
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
+                    <h5>Comentario de: ${newComment.user}</h5>     
+                    <p>Calificación: ${newComment.score}</p>
+                    <p>Comentario: ${newComment.description}</p>
+                    <p>Fecha: ${newComment.dateTime}</p>
+                `;
+
+                const commentsContainer = document.getElementById('comments-container');
+                commentsContainer.appendChild(commentDiv); // Añade el nuevo comentario al contenedor con el resto de comentarios
+     
+                document.getElementById('input-name').value = '';
+                document.getElementById('input-date').value = '';       // Esta parte limpia las casillas una vez que se presiona enviar
+                document.querySelector('textarea').value = '';
+                document.querySelector('input[name="rating"]:checked').checked = false; // Desmarcar la calificación
+            } else {
+                alert("Por favor, completa todos los campos antes de enviar.");
+            }
+        });
     } else {
         console.error('No se encontró el ID del producto en el almacenamiento local.');
     }
 });
+
+

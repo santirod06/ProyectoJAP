@@ -60,22 +60,35 @@
         <div id="product-images" class="d-flex flex-wrap">
       </div>
       <!-- Campo de calificación de un producto -->
-      <div class="container mt-5">
-        <h4 class="text-center" id="h4_qualification">Califica este producto</h4>
-        <div class="rating text-center">
-            <input type="radio" name="rating" id="star1" value="5">
-            <label for="star1" class="fas fa-star"></label>
-            <input type="radio" name="rating" id="star2" value="4">
-            <label for="star2" class="fas fa-star"></label>
-            <input type="radio" name="rating" id="star3" value="3">
-            <label for="star3" class="fas fa-star"></label>
-            <input type="radio" name="rating" id="star4" value="2">
-            <label for="star4" class="fas fa-star"></label>
-            <input type="radio" name="rating" id="star5" value="1">
-            <label for="star5" class="fas fa-star"></label>
-        </div>
-        <textarea class="form-control mt-3" placeholder="Escribe tu opinión aquí..." rows="3"></textarea>
-        <button class="btn btn-primary mt-3 ms-auto d-block">Enviar</button>
+        <!-- Estrellitas-->
+        <div class="container mt-5">
+          <h4 class="text-center" id="h4_qualification">Califica este producto</h4>
+          <div class="rating text-center">
+              <input type="radio" name="rating" id="star1" value="5">
+              <label for="star1" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star2" value="4">
+              <label for="star2" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star3" value="3">
+              <label for="star3" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star4" value="2">
+              <label for="star4" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star5" value="1">
+              <label for="star5" class="fas fa-star"></label>
+          </div>
+          
+          <!-- Casilla para nombre (sera necesario o podemos usar el nombre de usuario?)--> 
+          <input type="text" class="form-control mt-3" placeholder="Tu nombre" id="input-name" required>
+
+          <!-- fecha -->
+          <input type="date" class="form-control mt-3" id="input-date" required>
+
+          <!-- opinión -->
+          <textarea class="form-control mt-3" placeholder="Escribe tu opinión aquí..." rows="3"></textarea>
+          
+          <!-- Boton para enviar -->
+          <button class="btn btn-primary mt-3 ms-auto d-block">Enviar</button>
+          <h4> Calificaciones de este producto: </h4>  
+          <div id="comments-container"></div>
     </div>
     </div>
   </main>
