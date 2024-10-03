@@ -49,7 +49,66 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error('Error al obtener la información del producto:', error);
             });
 
-        // Parte de enviar y escribir comentarios
+            // Función para cargar y mostrar comentarios de la API
+            function loadComments() {
+                fetch(`https://japceibal.github.io/emercado-api/products_comments/` + productId +`.json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error en la solicitud a la API`)
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    const commentsContainer = document.getElementById(`comments-container`);
+                    commentsContainer.innerHTML = ` ` // Limpiar contenido previo
+
+                    // Recorremos los comentarios y los agregamos al contenedor
+                    data.forEach(comment => {
+                        const commentDiv = document.createElement(`div`);
+                        commentDiv.classList.add(`comentario`, `my-3`, `p-2`, `border`);
+
+                        const name = document.createElement(`div`);
+                        name.classList.add(`nombre`);
+                        name.textContent = comment.user;
+
+                        const date = document.createElement(`div`);
+                        date.classList.add(`fecha`);
+                        date.textContent = new Date(comment.dateTime).toLocaleDateString();
+                        
+                        const rating = document.createElement(`div`);
+                        rating.classList.add(`calificacion`);
+                        rating.textContent = `Calificación: ${comment.score}`;
+
+                        let stars = ` `;
+                        for (let i = 1; i <= 5; i++) {
+                            stars += `<i class="fas fa-star ${i <= comment.score ? `text-warning` : `text-muted`}"></i>`
+                        }
+                        rating.innerHTML = stars;
+
+                        const text = document.createElement(`div`);
+                        text.textContent = comment.description;
+
+                        // Agrega todos los comentarios al div del comentario
+                        commentDiv.appendChild(name);
+                        commentDiv.appendChild(date);
+                        commentDiv.appendChild(rating);
+                        commentDiv.appendChild(text);
+
+                        commentsContainer.appendChild(commentDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error(`Error al cargar los comentarios:`. error)
+                    const commentsContainer = document.getElementById(`comments-container`);
+                    commentsContainer.innerHTML = `<p>Error al cargar los comentarios</p>`;
+                });
+                
+            }
+
+            loadComments();
+        
+            // Parte de enviar y escribir comentarios
         const sendButton = document.querySelector('.btn-primary'); // Creamos una constante para el boton de enviar
         sendButton.addEventListener('click', () => { // Le añadimos funcionalidad
             const nameInput = document.getElementById('input-name').value; 

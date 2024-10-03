@@ -614,5 +614,32 @@ a.custom-card:hover {
   color: gold; /* Color de las estrellas seleccionadas */
 }
 #comments-container {
-  text-align: left;
+  text-align: left; 
+}
+
+/*Estilos para la caja de comentarios*/
+.comentario {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.nombre {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.fecha {
+  font-size: 0.9rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.calificacion {
+  color: orange;
+  font-size: 1rem;;
 }
