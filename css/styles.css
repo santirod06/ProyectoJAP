@@ -370,6 +370,29 @@ a.custom-card:hover {
     font-size: 10px;
   }
 
+  /* Products-info para celular */
+  #input-button {
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  #product-info p {
+    font-size: 0.8rem;
+  }  
+  #products-info-titles {
+    font-size: 1rem;
+  }
+  #input-name {
+    height: 2rem;
+  }
+  #input-date {
+    height: 2rem;
+  }
+  #input-opinion {
+    height: 4rem;
+  }
+
 }
 /* MODO TABLET 768x1024px */
 @media (min-width: 569px) and (max-width: 768px) {
