@@ -10,7 +10,21 @@
 }
 
 nav a {
+  display: flex;
   text-decoration: none;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+
+#usuario {
+  margin-left: auto; /* Empuja el elemento #user al final del contenedor */
+  text-align: center; /* Centra el texto dentro del elemento #user */
+  color: white;
+  font-family: 'Verdana', serif !important;
+
 }
 
 .bd-placeholder-img {
@@ -189,24 +203,466 @@ a.custom-card:hover {
   color: orange;
 }
 
-.title{
-  text-align: center;
-  font-size: 20px;
-  display: grid;
-  border: 1px solid black;
+/* ID agregado al buscador en la linea 47 de products.html */
+#search {
+  margin: auto;
+  width: 300px;
+  height: 24px;
+  font-size: 14px;
+}
+/*Slider para filtro de precio*/
+.slider {
+  margin: 20px 0;
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  padding: 10px;
-  column-gap: 10px;
-  row-gap: 10px;
-}
-.grid-item {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 10px;
-  font-size: 12px;
+.manual-inputs {
   text-align: center;
+}
+/*botones orden*/
+.sort-buttons { /* Estilo para alinear los botones a la derecha */
+  text-align: right;
+  padding: 10px; /* Añade un poco de espacio alrededor del contenedor */
+}
+
+/* Estilo para los botones */
+.sort-buttons button {
+  background: none; /* Elimina el fondo del botón por defecto */
+  border: none; /* Elimina el borde del botón por defecto */
+  padding: 0; /* Elimina el padding por defecto */
+  margin-left: 10px; /* Añade espacio entre los botones */
+}
+
+/* Estilo para las imágenes dentro de los botones */
+.sort-buttons img {
+  width: 2.5rem; /* Ajusta el tamaño de la imagen según lo necesites */
+  height: 2.5rem; /* Mantiene la proporción de la imagen */
+}
+
+/*Agregado a la linea 42 products.html */
+.title{
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  display: flex;
+  border: 1px solid black;
+  width: 1272px;
+  height: 63px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+/*Agregado a la linea 46 products.html*/
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  margin: auto;
+}
+/*Agregado a cada producto del products.html*/
+.flex-container > div{
+  padding: 5px;
+  margin: auto;
+  font-size: 10px;
+  text-align: left;
+  width: 600px;
+  height: 430px;
+}
+/*Imagen de cada producto*/
+.flex-container > div >img{
+  width: 450px;
+  height: auto;
+  margin: auto;
+  padding: 5px;
+}
+/* Modifica las dimensiones de los detalles de producto */
+.card-text{
+  margin: 0;
+  font-size: 16px;
+}
+@media (max-width: 320px) and (max-height: 568px) {
+  .title {
+    width: 80%;
+    height: 0;
+    font-size: 18px;
+    margin: auto;
+  }
+  #search{
+    width: 100%;
+    height: 1%;
+    font-size: 10px;
+  }
+  .slider{
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  .slider > label{
+    justify-content: center;
+    font-size: 12px;
+  }
+  .slider-labels{
+    font-size: 12px;
+  }
+  .manual-inputs{
+    font-size: 12px;
+  }
+  .manual-inputs > button{
+    margin-top: 1%;
+    width: 30%;
+    font-size: 10px;
+    text-align: center;
+  }
+  .manual-inputs > input{
+    width: 35%;
+  }
+  .sort-buttons { /* Estilo para alinear los botones a la derecha */
+    display: flex;
+    justify-content: space-around;
+  }
+  .sort-buttons > #sort-price-desc > img{
+    width: 30%;
+    height: auto;
+  }
+  .sort-buttons > #sort-price-asc > img{
+    width: 30%;
+    height: auto;
+  }
+  .sort-buttons > #sort-relevance-desc > img{
+    width: 30%;
+    height: auto;
+  }
+  .sort-buttons > #restore-original-order{
+    font-size: 10px;
+  }
+  .flex-container {
+    flex-direction: column; 
+    padding: 15px; 
+  }
+
+  .flex-container > div {
+    width: 217px;
+    height: 196px;
+    display: flex;
+    align-items: center; 
+    padding: 5px; 
+    font-size: 10px;
+  }
+
+  .flex-container > div > img {
+    width: 157px; 
+    height: 109px;
+  }
+  .card-title{
+    font-size: 12px;
+    margin: 0;
+  }
+  .card-text{
+    font-size: 8px;
+  }
+
+  footer {
+    text-align: left;
+    font-size: 10px;
+  }
+
+  /* Products-info para celular */
+  #input-button {
+    font-size: 0.8rem;
+    width: 4rem;
+    height: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  #product-info p {
+    font-size: 0.8rem;
+  }  
+  #products-info-titles {
+    font-size: 1rem;
+  }
+  #input-name {
+    height: 2rem;
+  }
+  #input-date {
+    height: 2rem;
+  }
+  #input-opinion {
+    height: 4rem;
+  }
+
+}
+/* MODO TABLET 768x1024px */
+@media (min-width: 569px) and (max-width: 768px) {
+  /* Modifica dimensiones del titulo */
+  .title{
+    width: 672px;
+    height: 63px;
+  }
+  #search{
+    font-size: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .slider{
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+  }
+  .slider > label{
+    justify-content: center;
+    font-size: 18px;
+  }
+  .slider-labels{
+    font-size: 18px;
+  }
+  .manual-inputs{
+    flex-direction: column;
+    font-size: 21px;
+  }
+  .manual-inputs > button{
+    margin-top: 1%;
+    width: 30%;
+    font-size: 18px;
+    text-align: center;
+  }
+  .manual-inputs > input{
+    width: 50%;
+  }
+  .sort-buttons { /* Estilo para alinear los botones a la derecha */
+    display: flex;
+    justify-content: space-around;
+  }
+  .sort-buttons > #sort-price-desc > img{
+    width: 20%;
+    height: auto;
+  }
+  .sort-buttons > #sort-price-asc > img{
+    width: 20%;
+    height: auto;
+  }
+  .sort-buttons > #sort-relevance-desc > img{
+    width: 20%;
+    height: auto;
+  }
+  .sort-buttons > #restore-original-order{
+    font-size: 20px;
+  }
+  /* Modifica el estilo del container principal */
+  .flex-container{
+    display: flex;
+    padding: 30px;
+  }
+  /* Modifica las dimensiones del area de cada producto */
+  .flex-container > div{
+    width: 290px;
+    height: 260px;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+  /* Modifica las dimensiones de las fotos de los productos */
+  .flex-container > div > img{
+    display: flex;
+    width: 245px;
+    height: auto;
+    margin: auto;
+  }
+  /* Modifica dimensiones del nombre del producto*/
+  .card-title{
+    margin: 0;
+    font-size: 12px;
+  }
+  /* Modifica las dimensiones de los detalles */
+  .card-text{
+    margin: 0;
+    font-size: 10px;
+  }
+}
+/* MODO ESTANDAR 1366x768px */
+@media (min-width: 769px){
+  /* Modifica el titulo */
+  .title{
+    width: 100%;
+    height: 30px;
+    margin: auto;
+  }
+  /* Modifica las dimensiones del buscador */
+  #search{
+    font-size: 20px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  /* Modifica el container principal */
+  .flex-container{
+    display: flex;
+    padding: 10px;
+  }
+  /* Modifica las dimensiones del area de cada producto */
+  .flex-container > div {
+    width: 500px;
+    height: 290px;
+    box-sizing: border-box;
+    border-radius: 4%;
+  }
+  /* Modifica las dimensiones de las fotos de los productos */
+  .flex-container > div > img{
+    display: flex;
+    margin: auto;
+    width: 250px;
+    height: auto;
+  }
+  /* Modifica las dimensiones de los detalles */
+  .card-text{
+    margin: 0;
+    font-size: 13px;
+  }
+
+  #product-info {
+    text-align: center;
+  }
+  
+  #product-category {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  #product-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  #product-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  #product-price {
+    font-size: 18px;
+  }
+  
+  #product-sold {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Acá el contenedor de imágenes del producto */
+  #product-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  #product-images img {
+    width: 100%;
+    max-width: 250px; /* Ajusta el tamaño max según lo necesario */
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    #product-images img {
+      max-width: 200px; /* Ajusta el tamaño máximo para pantallas más chicas */
+    }
+  
+    #product-name {
+      font-size: 20px;
+    }
+  
+    #product-description {
+      font-size: 14px;
+    }
+
+    #product-price {
+      font-size: 16px;
+    }
+  
+    #product-sold {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    #product-images {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    #product-images img {
+      max-width: 100%;
+    }
+  
+    #product-name {
+      font-size: 18px;
+    }
+  
+    #product-description {
+      font-size: 12px;
+    }
+  
+    #product-price {
+      font-size: 16px;
+    }
+
+    #product-sold {
+      font-size: 10px;
+    }
+  }
+
+}
+
+/*Estilos para el campo de calificación de un produto*/
+.rating {
+  direction: rtl; /* Para invertir la dirección de los estrellas */
+}
+.rating input {
+  display: none; /* Ocultar el input */
+}
+.rating label {
+  font-size: 2rem; /* Tamaño de las estrellas */
+  color: lightgray;
+  cursor: pointer;
+}
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold; /* Color al pasar el mouse */
+}
+.rating input:checked ~ label {
+  color: gold; /* Color de las estrellas seleccionadas */
+}
+#comments-container {
+  text-align: left; 
+}
+
+/*Estilos para la caja de comentarios*/
+.comentario {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.nombre {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.fecha {
+  font-size: 0.9rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+.calificacion {
+  color: orange;
+  font-size: 1rem;;
 }

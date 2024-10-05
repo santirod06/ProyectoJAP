@@ -38,9 +38,58 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div id="product-info" class="my-4">
+        <h1 id="product-name"></h1>
+        <p id="product-description"></p>
+        <p id="product-category"></p>
+        <p id="product-price"></p>
+        <p id="product-sold"></p>
+        <div id="carouselExample" class="carousel slide">
+          <div class="carousel-inner" id="carousel-items">
+            <!-- Aquí se añadirán los items del carrusel dinámicamente -->
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>        
+        <div id="product-images" class="d-flex flex-wrap">
       </div>
+      <!-- Campo de calificación de un producto -->
+        <!-- Estrellitas-->
+        <div class="container mt-5">
+          <h4 class="text-center" id="h4_qualification">Califica este producto</h4>
+          <div class="rating text-center">
+              <input type="radio" name="rating" id="star1" value="5">
+              <label for="star1" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star2" value="4">
+              <label for="star2" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star3" value="3">
+              <label for="star3" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star4" value="2">
+              <label for="star4" class="fas fa-star"></label>
+              <input type="radio" name="rating" id="star5" value="1">
+              <label for="star5" class="fas fa-star"></label>
+          </div>
+          
+          <!-- Casilla para nombre (sera necesario o podemos usar el nombre de usuario?)--> 
+          <input type="text" class="form-control mt-3" placeholder="Tu nombre" id="input-name" required>
+
+          <!-- fecha -->
+          <input type="date" class="form-control mt-3" id="input-date" required>
+
+          <!-- opinión -->
+          <textarea class="form-control mt-3" id= "input-opinion" placeholder="Escribe tu opinión aquí..." rows="3"></textarea>
+          
+          <!-- Boton para enviar -->
+          <button class="btn btn-primary mt-3 ms-auto d-block" id="input-button">Enviar</button>
+          <h4 id="products-info-titles"> Calificaciones de este producto: </h4>  
+          <div id="comments-container"></div>
+    </div>
     </div>
   </main>
   <footer class="text-muted">
@@ -59,9 +108,9 @@
       <div></div>
     </div>
   </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

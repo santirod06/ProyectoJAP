@@ -1,0 +1,151 @@
+/*Cambio todas las medidas absolutas a sus equivalentes relativas*/
+/*Realizo cambios para centrar la imagen de fondo*/ 
+#body_login {
+  background-image: url(../img/login.png);
+  max-width: 100%;
+  height: auto;
+  background-attachment: fixed; /*Imagen de fondo fija*/
+  background-position: center;
+  background-size: cover;
+  backdrop-filter: blur(4px);
+}
+
+  /* Doy estilo a las imágenes del login */
+  .login_user{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 1.25rem;
+    margin-left: 0.0625rem;
+    float: left;
+    border: 0.1875rem solid white;
+    background-color: white;
+    color: black;
+  }
+
+  /* Doy estilo al contenedor del formulario */
+  #container_flexbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  /*Centro el contenedor del formulario en la página*/
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+  
+  /* Doy estilo al formulario de login */
+ .login {
+  background-image: url(../img/abstract-orange-background-layout-design-studio-room-web-template-business-report-with-smooth-circle-gradient-color.jpg);
+  padding: 1.25rem;
+  width: 18.75rem;
+  height: auto;
+  box-sizing: border-box;
+}
+  
+.container_login {
+  margin-bottom: 0.625rem;
+  display: flex;
+  align-items: center;
+}
+
+.container_login p {
+  margin: 0;
+  width: 100%;
+}
+  
+.container_login input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.625rem;
+  border: 0.0625rem solid white;
+}
+  
+#get_into {
+  width: 100%;
+  padding: 0.625rem;
+  background-color: #ff8800;
+  color: #ffffff;
+  border: none;
+  margin: 1.25rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+#footer {
+  margin-top: 4.5rem;
+   }
+#footer p {
+   text-align: center;
+   }
+
+/*Tablet*/
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  /*Mejora en la visualización del login*/
+  .login { 
+    width: 22rem;
+    height: 27rem;
+  }
+ #container_flexbox{
+    height: 115%;
+}
+.container_login {
+  height: 30%;
+}
+.login_user {
+  height: 4rem;
+  width: 4rem;
+}
+.container_login input, #get_into {
+  height: 4rem;
+  font-size: 1.5rem;
+}
+  /*Mejora en la visualización del footer*/
+#footer {
+  margin-top: 2.5rem;
+   }
+#footer p{
+  font-size: 1.5rem;
+}
+  /*Mejora visualización alert*/
+.alert p{
+  font-size: 1.5rem;
+  text-align: center;
+}
+/*Aumento el blur para visualizar mejor el contenido*/
+#body_login{
+  backdrop-filter: blur(7px);
+}
+}
+
+/*Celular*/
+@media only screen and (max-width: 320px) {
+   /*Ajustes para el tamaño del login en el teléfono*/
+  .login {
+     height: 18rem;
+     padding: 1rem;
+    }
+    /*Ajustes tamaño del contenedor del login*/
+    #container_flexbox{
+      width: 90%;
+    }
+    /*Reducir espacio entre el elementos del login*/
+  .container_login{
+    margin-bottom: 0.10rem;
+  }
+  /*Mejorar el footer*/
+    #footer {
+   margin-top: 3.5rem;
+    }
+    #footer p {
+       font-size: 0.9rem;
+       }
+  /*Ajuste para que en el teléfono el login no se vea tan abajo*/
+  #container_flexbox{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+}

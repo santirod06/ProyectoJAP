@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>eMercado - Todo lo que busques está aquí</title>
-
+  
+  <!-- Bootstrap CSS para slider -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery UI CSS para slider -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+ 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
-
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
@@ -31,6 +34,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <span id="usuario"> </span>
           </li>
         </ul>
       </div>
@@ -40,75 +44,91 @@
     <div class="container">
 <!----- AGREGO LA NUEVA CLASE TITLE ----->
       <div class="title">
-        <p>Autos</p>
+        <p>Productos</p>
       </div>
-<!----- GENERAR DIVISIONES NECESARIAS ----->
-      <div class="grid-container">
-<!-----           PRODUCTO 1          ----->
-        <div class="grid-item">
-          <div class="detalle">
-            <img src="ruta-de-imagen" alt="Imagen del producto">
-            <p><strong>Nombre:</strong> Descripción del nombre</p>
-            <p><strong>Descripción:</strong> Descripción del producto</p>
-            <p><strong>Precio:</strong> Precio del producto</p>
-            <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
+<!----- AGREGO EL BUSCADOR ----->
+      <input type="search" id="search" placeholder="Buscar producto...">
+<!----- Slider para precio definido ----->      
+      <div class="container">
+        <div class="slider">
+          <label for="price-slider">Rango de Precios:</label>
+          <div id="price-slider"></div>
+           <div class="slider-labels">
+            <span id="min-price">$0</span>
+            <span id="max-price">$4000000</span>
+          </div>
+          <!-- Campos de entrada para rango manual -->
+        <div class="manual-inputs">
+          <label for="min-price-input">Precio Mínimo:</label>
+          <input type="number" id="min-price-input" placeholder="0">
+          <label for="max-price-input">Precio Máximo:</label>
+          <input type="number" id="max-price-input" placeholder="4000000">
+          <button id="apply-price-range">Filtrar</button>
+        </div>
+      </div>
+       <!-- Ordenar página ----->
+       <div class="sort-buttons">
+        <button id="sort-price-desc">
+            <img src="img/2.png" alt="Ordenar por precio descendente">
+        </button>
+        <button id="sort-price-asc">
+          <img src="./img/1.png" alt="Ordenar por precio ascendente">
+        </button>
+        <button id="sort-relevance-desc">
+            <img src="img/Relevante.png" alt="Ordenar por relevancia descendente">
+        </button>
+        <button id="restore-original-order">Restaurar Orden</button>
+      </div> 
+    </div>
+    <!----- GENERAR DIVISIONES NECESARIAS ----->
+          <div class="flex-container" id="product-list">
+    <!-----           PRODUCTO 1          ----->
+              <div>
+                <img src="ruta-de-imagen" alt="Imagen del producto">
+                <p><strong>Nombre:</strong> Descripción del nombre</p>
+                <p><strong>Descripción:</strong> Descripción del producto</p>
+                <p><strong>Precio:</strong> Precio del producto</p>
+                <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
+              </div>
+    <!-----           PRODUCTO 2          ----->
+              <div>
+                <img src="ruta-de-imagen" alt="Imagen del producto">
+                <p><strong>Nombre:</strong> Descripción del nombre</p>
+                <p><strong>Descripción:</strong> Descripción del producto</p>
+                <p><strong>Precio:</strong> Precio del producto</p>
+                <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
+              </div>
+    <!-----           PRODUCTO 3          ----->
+              <div>
+                <img src="ruta-de-imagen" alt="Imagen del producto">
+                <p><strong>Nombre:</strong> Descripción del nombre</p>
+                <p><strong>Descripción:</strong> Descripción del producto</p>
+                <p><strong>Precio:</strong> Precio del producto</p>
+                <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
+              </div>
+    <!-----           PRODUCTO 4          ----->
+              <div>
+                <img src="ruta-de-imagen" alt="Imagen del producto">
+                <p><strong>Nombre:</strong> Descripción del nombre</p>
+                <p><strong>Descripción:</strong> Descripción del producto</p>
+                <p><strong>Precio:</strong> Precio del producto</p>
+                <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
+              </div>
+    <!-----           PRODUCTO 5          ----->
+              <div>
+                <img src="ruta-de-imagen" alt="Imagen del producto">
+                <p><strong>Nombre:</strong> Descripción del nombre</p>
+                <p><strong>Descripción:</strong> Descripción del producto</p>
+                <p><strong>Precio:</strong> Precio del producto</p>
+                <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
+              </div>
+            </div>
           </div>
         </div>
-<!-----           PRODUCTO 2          ----->
-        <div class="grid-item">
-          <div class="detalle">
-            <img src="ruta-de-imagen" alt="Imagen del producto">
-            <p><strong>Nombre:</strong> Descripción del nombre</p>
-            <p><strong>Descripción:</strong> Descripción del producto</p>
-            <p><strong>Precio:</strong> Precio del producto</p>
-            <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
-          </div>
-        </div>
-<!-----           PRODUCTO 3          ----->
-          <div class="grid-item">
-            <div class="detalle">
-              <img src="ruta-de-imagen" alt="Imagen del producto">
-              <p><strong>Nombre:</strong> Descripción del nombre</p>
-              <p><strong>Descripción:</strong> Descripción del producto</p>
-              <p><strong>Precio:</strong> Precio del producto</p>
-              <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
-            </div>
-          </div>
-<!-----           PRODUCTO 4          ----->
-          <div class="grid-item">
-            <div class="detalle">
-              <img src="ruta-de-imagen" alt="Imagen del producto">
-              <p><strong>Nombre:</strong> Descripción del nombre</p>
-              <p><strong>Descripción:</strong> Descripción del producto</p>
-              <p><strong>Precio:</strong> Precio del producto</p>
-              <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
-            </div>
-          </div>
-<!-----           PRODUCTO 5          ----->
-          <div class="grid-item">
-            <div class="detalle">
-              <img src="ruta-de-imagen" alt="Imagen del producto">
-              <p><strong>Nombre:</strong> Descripción del nombre</p>
-              <p><strong>Descripción:</strong> Descripción del producto</p>
-              <p><strong>Precio:</strong> Precio del producto</p>
-              <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
-            </div>
-          </div>
-<!-----           PRODUCTO 6          ----->
-          <div class="grid-item">
-            <div class="detalle">
-              <img src="ruta-de-imagen" alt="Imagen del producto">
-              <p><strong>Nombre:</strong> Descripción del nombre</p>
-              <p><strong>Descripción:</strong> Descripción del producto</p>
-              <p><strong>Precio:</strong> Precio del producto</p>
-              <p><strong>Cantidad vendidos:</strong> Cantidad vendida</p>
-            </div>
-          </div>
       </div>
     </div>
-
-
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -117,6 +137,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -125,9 +146,18 @@
       <div></div>
     </div>
   </div>
+
+  <!-- jQuery para slider -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <!-- jQuery UI JS para slider -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- Bootstrap JS para slider -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/user.js"></script>
 </body>
-
 </html>
