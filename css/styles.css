@@ -666,3 +666,23 @@ a.custom-card:hover {
   color: orange;
   font-size: 1rem;;
 }
+
+/* Productos relacionados */
+.related-products-title{
+  font-size: 13px;
+  text-align: center;
+}
+
+.related-product{
+  width: 100%;
+  margin: auto;
+}
+.related-product > img{
+  width: 100%;
+  height: auto;
+  border-radius: 10%;
+}
+.related-product > p{
+  text-align: center;
+  padding-top: 15px;
+}
