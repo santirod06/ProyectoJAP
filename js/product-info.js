@@ -171,4 +171,62 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
         console.error('No se encontró el ID del producto en el almacenamiento local.');
     }
+
+        // Creamos la función que llama a los productos relacionados
+        function loadRelatedProducts(relatedProducts) {
+            const relatedContainer = document.getElementById('related-products-container');
+            relatedContainer.innerHTML = '';
+
+        relatedProducts.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('related-product');
+
+        const productImg = document.createElement('img');
+            productImg.src = product.images[0];
+            productImg.alt = product.name;
+            productImg.classList.add('related-product-img');
+
+        const productName = document.createElement('p');
+            productName.textContent = product.name;
+
+        // Se añadió un evento de clic para que cuando se seleccione un producto relacionado, actualize la página con el nuevo producto
+        productDiv.addEventListener('click', () => {
+            localStorage.setItem('selectedProductId', product.id);
+            location.reload();
+        });
+
+        // Agrega la imagen y el nombre al div del producto
+        productDiv.appendChild(productImg);
+        productDiv.appendChild(productName);
+
+        // Agrega el producto relacionado al contenedor
+        relatedContainer.appendChild(productDiv);
+    });
+}
+
+    // Realizamos la peticion al fetch que obtiene la información de los productos
+    fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
+        .then(response => response.json())
+        .then(product => {
+        
+        if (product.relatedProducts && product.relatedProducts.length > 0) {
+            fetchRelatedProducts(product.relatedProducts);
+        }
+    })
+    .catch(error => console.error('Error al obtener la información del producto:', error));
+
+    // Esta es la función que obtiene la información directa de los productos relacionados
+    function fetchRelatedProducts(relatedProductIds) {
+    const requests = relatedProductIds.map(relatedProduct => 
+        fetch(`https://japceibal.github.io/emercado-api/products/${relatedProduct.id}.json`)
+        .then(response => response.json())
+    );
+
+    Promise.all(requests)
+        .then(relatedProducts => {
+            loadRelatedProducts(relatedProducts);
+        })
+        .catch(error => console.error('Error al cargar productos relacionados:', error));
+}
+
 });
