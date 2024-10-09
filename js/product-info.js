@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Actualiza el contenido de la página con la información del producto
                 document.getElementById('product-name').textContent = product.name || 'Nombre no disponible';
                 document.getElementById('product-description').textContent = product.description || 'Descripción no disponible';
-                document.getElementById('product-category').textContent = product.category || 'Categoría no disponible';
                 document.getElementById('product-price').textContent = product.cost !== undefined ? `Precio: $${product.cost.toFixed(2)}` : 'Precio no disponible';
                 document.getElementById('product-sold').textContent = product.soldCount !== undefined ? `Vendidos: ${product.soldCount}` : 'Cantidad no disponible';
 
