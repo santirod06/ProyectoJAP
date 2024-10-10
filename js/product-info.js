@@ -228,4 +228,25 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => console.error('Error al cargar productos relacionados:', error));
 }
 
+const toggleButton = document.getElementById('toggle-mode');
+const icon = toggleButton.querySelector('i');
+
+// Verifica la preferencia almacenada en localStorage
+if (localStorage.getItem('mode') === 'dark') {
+  document.body.classList.add('dark-mode');
+  icon.classList.replace('fa-moon', 'fa-sun');
+}
+
+// Cambia entre los modos y almacena la preferencia
+toggleButton.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  
+  if (document.body.classList.contains('dark-mode')) {
+    icon.classList.replace('fa-moon', 'fa-sun');
+    localStorage.setItem('mode', 'dark');
+  } else {
+    icon.classList.replace('fa-sun', 'fa-moon');
+    localStorage.setItem('mode', 'light');
+  }
+});
 });

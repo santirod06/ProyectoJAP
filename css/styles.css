@@ -202,7 +202,6 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
-
 /* ID agregado al buscador en la linea 47 de products.html */
 #search {
   margin: auto;
@@ -244,16 +243,14 @@ a.custom-card:hover {
 
 /*Agregado a la linea 42 products.html */
 .title{
-  padding: 20px;
+  padding-top: 20px;
   text-align: center;
-  font-size: 24px;
+  font-size: 30px;
   display: flex;
-  border: 1px solid black;
   width: 1272px;
   height: 63px;
   justify-content: center;
   align-items: center;
-  margin: auto;
 }
 /*Agregado a la linea 46 products.html*/
 .flex-container {
@@ -271,6 +268,8 @@ a.custom-card:hover {
   text-align: left;
   width: 600px;
   height: 430px;
+  background-color: beige;
+  border: wheat solid 1px;
 }
 /*Imagen de cada producto*/
 .flex-container > div >img{
@@ -278,6 +277,7 @@ a.custom-card:hover {
   height: auto;
   margin: auto;
   padding: 5px;
+  border-radius: 10%;
 }
 /* Modifica las dimensiones de los detalles de producto */
 .card-text{
@@ -303,6 +303,104 @@ a.custom-card:hover {
 .related-product > p{
   text-align: center;
   padding-top: 15px;
+}
+
+/* MODO NOCTURNO */
+.mode-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+body.dark-mode {
+  background-color: #1f1d1d;
+  color: white;
+}
+body.dark-mode .mode-button i {
+  color: yellow;
+}
+body .mode-button i {
+  color: #555;
+}
+
+/* MODO NOCTURNO PRODUCT-INFO.HTML */
+.dark-mode #product-sold{
+  color: white;
+}
+.dark-mode .comentario{
+  background-color: #1f1d1d;
+}
+.dark-mode #comments-container{
+  color: white;
+}
+.dark-mode input{
+  background-color: #1f1d1d;
+  color: white;
+}
+.dark-mode textarea{
+  background-color: #1f1d1d;
+  color: white;
+}
+
+/* MODO NOCTURNO PRODUCTS.HTML */
+.dark-mode .card{
+  background-color: #1f1d1d;
+}
+.dark-mode .card-title{
+  color: white;
+}
+.dark-mode .card-text{
+  color: white;
+}
+.dark-mode #restore-original-order{
+  color: white;
+}
+
+/* MODO NOCTURNO CATEGORIES.HTML */
+.dark-mode .list-group-item{
+  background-color: #1f1d1d;
+  border: white 1px solid;
+}
+.dark-mode .mb-1{
+  color: white;
+}
+
+/* MODO NOCTURNO SELL.HTML */
+.dark-mode main{
+  background-color: #1f1d1d;
+}
+.dark-mode #file-upload{
+  background-color: #1f1d1d;
+}
+.dark-mode #productCurrency{
+  background-color: #1f1d1d;
+  color: white;
+}
+.dark-mode .custom-select{
+  background-color: #1f1d1d;
+  color: white;
+} 
+.dark-mode .my-0{
+  color: white;
+}
+.dark-mode .list-group-item{
+  color: white;
+}
+
+/* MODO NOCTURNO MY-PROFILE.HTML */
+.dark-mode body{
+  background-color: #1f1d1d;
+}
+
+/* MODO NOCTURNO INDEX.HTML */
+.dark-mode main{
+  background-color: #1f1d1d;
 }
 
 @media (max-width: 320px) and (max-height: 568px) {
@@ -362,7 +460,7 @@ a.custom-card:hover {
   }
   .flex-container {
     flex-direction: column; 
-    padding: 15px; 
+    padding: 15px;
   }
 
   .flex-container > div {
@@ -381,9 +479,11 @@ a.custom-card:hover {
   .card-title{
     font-size: 12px;
     margin: 0;
+    color: black;
   }
   .card-text{
     font-size: 8px;
+    color: black;
   }
 
   footer {
@@ -608,7 +708,7 @@ a.custom-card:hover {
   }
   #product-sold {
     font-size: 14px;
-    color: #666;
+    color: black;
   }
 
   /* id carousel product-info */
