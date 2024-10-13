@@ -39,4 +39,10 @@ toggleButton.addEventListener('click', () => {
     localStorage.setItem('mode', 'light');
   }
 });
+//Cierre de sesión
+document.getElementById("logOut").addEventListener("click",function(event){
+  event.preventDefault();
+  localStorage.removeItem('userRegistered');
+  window.location.replace("login.html");
+})
 });

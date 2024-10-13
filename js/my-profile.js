@@ -1,4 +1,4 @@
-// Primero verificamos que el usuario este registrado para que pueda acceder a la pagina
+document.addEventListener("DOMContentLoaded", function(){// Primero verificamos que el usuario este registrado para que pueda acceder a la pagina
 //  de my-profile, en caso de no estar registrado se le manda automaticamente al login.
 if (!localStorage.getItem('userRegistered')) {      // verificamos que este guardado la constante con el mail en el localStorage
     window.location.href = 'login.html';                            
@@ -83,8 +83,12 @@ toggleButton.addEventListener('click', () => {
     icon.classList.replace('fa-sun', 'fa-moon');
     localStorage.setItem('mode', 'light');
   }
+});   
 });
-
-    
+ //Cierre de sesión
+document.getElementById("logOut").addEventListener("click",function(event){
+  event.preventDefault();
+  localStorage.removeItem('userRegistered');
+  window.location.replace('login.html');
+})
 });
-  

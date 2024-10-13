@@ -26,6 +26,10 @@ nav a {
   font-family: 'Verdana', serif !important;
 
 }
+/* Menu desplegable del nombre */
+.dropdown-menu-dark .dropdown-item {
+  color: white; /* Cambia el color del texto a blanco */
+}
 
 .bd-placeholder-img {
   font-size: 1.125rem;
