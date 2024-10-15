@@ -398,8 +398,24 @@ body .mode-button i {
 }
 
 /* MODO NOCTURNO MY-PROFILE.HTML */
-.dark-mode body{
+.dark-mode .form-control {
   background-color: #1f1d1d;
+  color: white;
+  border-color: white;
+}
+
+.dark-mode label {
+  color: white;
+}
+
+.dark-mode .btn-primary {
+  background-color: #343a40;
+  border-color: white;
+  color: white;
+}
+
+.dark-mode .container h2 {
+  color: white;
 }
 
 /* MODO NOCTURNO INDEX.HTML */
