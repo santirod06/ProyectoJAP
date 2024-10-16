@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
-     //Cierre de sesión
+    if (!localStorage.getItem('userRegistered')) {
+        window.location.href = 'login.html';
+    }
+    //Cierre de sesión
     document.getElementById("logOut").addEventListener("click",function(event){
         event.preventDefault();
         localStorage.removeItem('userRegistered');

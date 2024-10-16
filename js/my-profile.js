@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
   // Primero verificamos que el usuario esté registrado para que pueda acceder a la página de my-profile.
   if (!localStorage.getItem('userRegistered')) {
-      window.location.href = 'login.html';
-      alert("Necesitas registrarte antes de acceder a tu perfil");
+    window.location.replace('login.html');
+    alert("Necesitas registrarte antes de acceder a tu perfil");
   } else {
       const emailRegistrado = localStorage.getItem('userRegistered');
       document.getElementById('mail').value = emailRegistrado;
@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
           alert('Debe completar todos los campos obligatorios');
       }
   });
-
   // Cierre de sesión
   document.getElementById("logOut").addEventListener("click", function(event) {
       event.preventDefault();

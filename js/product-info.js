@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    if (!localStorage.getItem('userRegistered')) {
+        window.location.replace('login.html');
+    }
     // Obtén el ID del producto del almacenamiento local
     const productId = localStorage.getItem('selectedProductId');
 

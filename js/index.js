@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
+  if (!localStorage.getItem('userRegistered')) {
+    //window.location.replace('login.html');
+    window.location.replace('login.html');
+}
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
         window.location = "products.html"
@@ -12,11 +16,6 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 
-    if (!localStorage.getItem('userRegistered')) {
-        window.location.href = 'login.html';
-    }
-
-    //localStorage.clear();
    
     const toggleButton = document.getElementById('toggle-mode');
 const icon = toggleButton.querySelector('i');

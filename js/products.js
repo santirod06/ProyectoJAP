@@ -229,6 +229,9 @@ cajasDeTexto.forEach(caja => {
 
 // Cargar productos al iniciar la página
 document.addEventListener('DOMContentLoaded', function() {
+    if (!localStorage.getItem('userRegistered')) {
+        window.location.replace('login.html');
+    }
     loadProducts();
     //Cierre de sesión
     document.getElementById("logOut").addEventListener("click",function(event){

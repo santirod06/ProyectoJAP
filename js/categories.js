@@ -88,6 +88,10 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+     
+    if (!localStorage.getItem('userRegistered')) {
+        window.location.replace('login.html');
+    }
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
@@ -161,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         localStorage.setItem('mode', 'light');
       }
     });
-    
     //Cierre de sesión
     document.getElementById("logOut").addEventListener("click",function(event){
         event.preventDefault();
