@@ -65,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     const commentsContainer = document.getElementById(`comments-container`);
                     commentsContainer.innerHTML = ` `; // Limpiar contenido previo
 
+                    // Ordeno los comentarios por fecha (el más reciente primero)
+                    data.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));
                     // Recorremos los comentarios y los agregamos al contenedor
                     data.forEach(comment => {
                         const commentDiv = document.createElement(`div`);
@@ -113,12 +115,15 @@ document.addEventListener("DOMContentLoaded", function () {
         // Parte de enviar y escribir comentarios
         const sendButton = document.querySelector('.btn-primary'); // Creamos una constante para el boton de enviar
         sendButton.addEventListener('click', () => { // Le añadimos funcionalidad
-            const nameInput = document.getElementById('input-name').value; 
-            const dateInput = document.getElementById('input-date').value; // Creamos una constante para obtener    //
+            const emailInput = localStorage.getItem("userRegistered"); //Obtenemos correo del uruario
+            const nameInput = emailInput.split("@")[0]; //Extraemos solo el nombre del usuario
+
+            
+            const dateInput = new Date().toLocaleDateString(); // Generar la fecha automáticamente
             const opinionInput = document.querySelector('textarea').value; // Cada una de las casillas que llenamos //
             const ratingInput = document.querySelector('input[name="rating"]:checked'); 
 
-            if (nameInput && dateInput && opinionInput && ratingInput) { // verificamos si todos los campos están completos
+            if (opinionInput && ratingInput) { // verificamos si todos los campos están completos
                 const score = ratingInput.value; // hay que guardarlo en una constante porque si no se rompe 
 
                 const newComment = { // creamos un objeto con la información correspondiente del
@@ -141,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Crear y agregar la fecha
                 const date = document.createElement(`div`);
                 date.classList.add(`fecha`);
-                date.textContent = new Date(newComment.dateTime).toLocaleDateString();
+                date.textContent = newComment.dateTime;
                 commentDiv.appendChild(date);
 
                 // Crear y agregar la calificación con estrellas
@@ -160,10 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 commentDiv.appendChild(text);
 
                 const commentsContainer = document.getElementById('comments-container');
-                commentsContainer.appendChild(commentDiv); // Añade el nuevo comentario al contenedor con el resto de comentarios
+                commentsContainer.insertAdjacentElement('afterbegin', commentDiv); // Añado el nuevo comentario arriba del todo en el contenedor con el resto de comentarios
      
-                document.getElementById('input-name').value = '';
-                document.getElementById('input-date').value = ''; // Esta parte limpia las casillas una vez que se presiona enviar
                 document.querySelector('textarea').value = '';
                 document.querySelector('input[name="rating"]:checked').checked = false; // Desmarcar la calificación
             } else {
