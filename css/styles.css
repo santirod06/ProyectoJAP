@@ -459,6 +459,28 @@ body .mode-button i {
   .manual-inputs > input{
     width: 35%;
   }
+  /* My profile celular */
+  #formulario {
+    font-size: .75rem;
+  }
+  .form-control {
+    padding: .2rem;
+    font-size: .75rem;
+  }
+  #profileFooter {
+    padding: .3rem;
+    font-size: .56rem;
+  }
+  #profile-image p {
+    font-size: .75rem;
+  }
+  #userProfile h2{
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  #button-guardar {
+    font-size: .75rem;
+  }
   .sort-buttons { /* Estilo para alinear los botones a la derecha */
     display: flex;
     justify-content: space-around;
