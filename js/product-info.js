@@ -58,14 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
                     
                     const cartItem = {
-                        name: product.name, // Asegúrate de que 'product.name' esté definido correctamente
-                        cost: product.cost, // Asegúrate de que 'product.cost' esté definido correctamente
-                        currency: product.currency, // Si utilizas otra moneda, cámbiala aquí
+                        name: product.name, 
+                        cost: product.cost, 
+                        currency: product.currency, 
                         quantity: 1,
-                        image: product.images[0], // Asegúrate de que 'product.images[0]' esté definido correctamente
+                        image: product.images[0], 
                     };
 
-                    // Agregar el nuevo artículo al carrito existente
                     existingCart.push(cartItem);
                     
                     // Guarda en localStorage
@@ -140,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         loadComments();
+
 
         // Parte de enviar y escribir comentarios
         const sendButton = document.querySelector('input-button'); // Asegúrate de que este selector es correcto
