@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Parte de enviar y escribir comentarios
-        const sendButton = document.querySelector('input-button'); // Asegúrate de que este selector es correcto
+        const sendButton = document.getElementById('input-button'); // Asegúrate de que este selector es correcto
         sendButton.addEventListener('click', () => { // Le añadimos funcionalidad
             const emailInput = localStorage.getItem("userRegistered"); // Obtenemos correo del usuario
             const nameInput = emailInput.split("@")[0]; // Extraemos solo el nombre del usuario
@@ -208,6 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Creamos la función que llama a los productos relacionados
     function loadRelatedProducts(relatedProducts) {
         const relatedContainer = document.getElementById('related-products-container');
+
+        console.log('Contenedor:', relatedContainer); // Verifica que el contenedor no sea null
         relatedContainer.innerHTML = '';
 
         relatedProducts.forEach(product => {
@@ -221,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const productName = document.createElement('p');
             productName.textContent = product.name;
-
+            // Se añadió un evento de clic para que cuando se seleccione un producto relacionado, actualize la página con el nuevo producto
             productDiv.addEventListener('click', () => {
                 localStorage.setItem('selectedProductId', product.id);
                 location.reload();
@@ -236,19 +238,54 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Realizamos la petición al fetch que carga los productos relacionados
+         // Realizamos la peticion al fetch que obtiene la información de los productos
     fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error en la solicitud a la API`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const relatedProducts = data.relatedProducts;
-            loadRelatedProducts(relatedProducts);
-        })
-        .catch(error => {
-            console.error('Error al cargar los productos relacionados:', error);
-        });
+    .then(response => response.json())
+    .then(product => {
+    
+    if (product.relatedProducts && product.relatedProducts.length > 0) {
+        fetchRelatedProducts(product.relatedProducts);
+    }
+})
+.catch(error => console.error('Error al obtener la información del producto:', error));
+
+// Esta es la función que obtiene la información directa de los productos relacionados
+function fetchRelatedProducts(relatedProductIds) {
+const requests = relatedProductIds.map(relatedProduct => 
+    fetch(`https://japceibal.github.io/emercado-api/products/${relatedProduct.id}.json`)
+    .then(response => response.json())
+);
+
+Promise.all(requests)
+    .then(relatedProducts => {
+        loadRelatedProducts(relatedProducts);
+    })
+    .catch(error => console.error('Error al cargar productos relacionados:', error));
+}
+//Modo noche/día
+const toggleButton = document.getElementById('toggle-mode');
+const icon = toggleButton.querySelector('i');
+// Verifica la preferencia almacenada en localStorage
+if (localStorage.getItem('mode') === 'dark') {
+  document.body.classList.add('dark-mode');
+  icon.classList.replace('fa-moon', 'fa-sun');
+}
+// Cambia entre los modos y almacena la preferencia
+toggleButton.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  
+  if (document.body.classList.contains('dark-mode')) {
+    icon.classList.replace('fa-moon', 'fa-sun');
+    localStorage.setItem('mode', 'dark');
+  } else {
+    icon.classList.replace('fa-sun', 'fa-moon');
+    localStorage.setItem('mode', 'light');
+  }
+});
+//Cierre de sesión
+document.getElementById("logOut").addEventListener("click",function(event){
+    event.preventDefault();
+    localStorage.removeItem('userRegistered');
+    window.location.replace("login.html");
+})
 });

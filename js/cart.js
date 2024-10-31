@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+    if (!localStorage.getItem('userRegistered')) {
+        window.location.href = 'login.html';
+    }
     const cartContainer = document.getElementById('cart-container');
     const cartData = JSON.parse(localStorage.getItem('cartItems')) || [];
 
@@ -49,4 +52,11 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         cartContainer.innerHTML = '<p>No hay productos en el carrito.</p>';
     }
+    
+    //Cierre de sesión
+    document.getElementById("logOut").addEventListener("click",function(event){
+        event.preventDefault();
+        localStorage.removeItem('userRegistered');
+        window.location.replace("login.html");
+    })
 });
