@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     carouselItemsContainer.appendChild(noImagesMessage);
                 }
 
-              
                 // Parte del botón de comprar y guardar en el carrito
                 const BuyingButton = document.getElementById('buying-button');
                 BuyingButton.addEventListener("click", function() {
@@ -72,9 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Producto agregado al carrito correctamente");
                     window.location.replace('cart.html');
                 });
-
-
-                
             })
             .catch(error => {
                 console.error('Error al obtener la información del producto:', error);
