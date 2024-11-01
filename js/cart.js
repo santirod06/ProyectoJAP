@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     const cartContainer = document.getElementById('cart-container');
-    let cartData = JSON.parse(localStorage.getItem('cartItems')) || []; // Cambiado a let
+    let cartData = JSON.parse(localStorage.getItem('cartItems')) || []; 
 
     let totalUSD = 0;  // Total en dólares
     let totalUYU = 0;  // Total en pesos
