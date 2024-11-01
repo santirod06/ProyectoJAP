@@ -225,3 +225,15 @@ a.custom-card:hover {
   font-size: 1.5rem; 
   font-weight: bold;
 }
+
+#cart-badge {
+  background-color: #ff4757; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  border-radius: 50%; /* Bordes redondeados */
+  padding: 0.2em 0.4em; /* Espaciado interno */
+  font-size: 0.8em; /* Tamaño de fuente */
+  position: relative; /* Cambiado a relative */
+  margin-left: 0.5em; /* Espacio entre el texto y el badge */
+  vertical-align: middle; /* Alinear verticalmente con el texto */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+}
