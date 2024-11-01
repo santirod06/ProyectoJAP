@@ -29,16 +29,22 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <!--Menú desplegable para el nombre-->
+          <!-- Menú desplegable para el nombre -->
           <li class="nav-item dropdown">
             <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><span id="usuario"> </span></button> 
+              <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <span id="usuario"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li>
+                  <a class="dropdown-item" href="cart.html">
+                    Mi carrito <span id="cart-badge"></span> <!-- Badge aquí -->
+                  </a>
+                </li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="#" id="logOut">Cerrar sesión</a></li>
               </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -48,14 +54,14 @@
   <div class="container mt-5">
     <h2 id="cart-title" class="cart-title text-center">Carrito del Usuario</h2>
     <div class="row justify-content-center" id="cart-container">
-        <!-- Los productos se agregan dinámicamente -->
+      <!-- Los productos se agregan dinámicamente -->
     </div>
     <div class="row mt-4">
       <div class="col-md-12">
-          <h5 class="text-end" id="total">Total: $0.00</h4>
+        <h5 class="text-end" id="total">Total: $0.00</h5>
       </div>
+    </div>
   </div>
-</div>
 
   <main>
   </main>
