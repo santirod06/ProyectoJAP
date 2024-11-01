@@ -28,8 +28,16 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('total').textContent = `Total: USD ${totalUSD.toFixed(2)} + UYU ${totalUYU.toFixed(2)}`;
     };
 
+
+    // Verifica si el carrito está vacío
+    if (cartData.length === 0) {
+        cartContainer.innerHTML = `
+            <div class="text-center">
+                <h5>No hay productos en el carrito.</h5>
+            </div>
+        `;
+    }else {
     // Creamos dinámicamente una lista de productos en el carrito
-    if (cartData.length > 0) {
         cartData.forEach(item => {
             const productDiv = document.createElement('div'); 
             productDiv.classList.add('cart-item', 'col-md-12', 'position-relative');
@@ -124,12 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
             productDiv.appendChild(productRow);
             cartContainer.appendChild(productDiv);
         });
-    } else {
-        cartContainer.innerHTML = `
-        <div class="text-center">
-            <h5>No hay productos en el carrito.</h5>
-        </div>
-    `;
     }
 
     // Cierre de sesión
