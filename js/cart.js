@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() { 
     if (!localStorage.getItem('userRegistered')) {
         window.location.href = 'login.html';
     }
@@ -9,12 +9,17 @@ document.addEventListener("DOMContentLoaded", function() {
     let totalUSD = 0;  // Total en dólares
     let totalUYU = 0;  // Total en pesos
 
+    // Nueva función para actualizar el badge del carrito
+    const updateCartBadge = () => {
+        const totalQuantity = cartData.reduce((total, item) => total + item.quantity, 0);
+        const badge = document.getElementById('cart-badge'); // Asegúrate de que este ID existe en tu HTML
+        badge.textContent = totalQuantity > 0 ? totalQuantity : ''; // Actualiza el badge o lo quita si está vacío
+    };
+
     const updateTotals = () => {
-        // Reinicia los totales antes de acumular
         totalUSD = 0;
         totalUYU = 0;
 
-        // Acumula en la moneda correspondiente
         cartData.forEach(cartItem => {
             const itemSubtotal = cartItem.cost * cartItem.quantity;
             if (cartItem.currency === 'USD') {
@@ -24,10 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        // Actualiza el total en el DOM
         document.getElementById('total').textContent = `Total: USD ${totalUSD.toFixed(2)} + UYU ${totalUYU.toFixed(2)}`;
     };
-
 
     // Verifica si el carrito está vacío
     if (cartData.length === 0) {
@@ -36,13 +39,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 <h5>No hay productos en el carrito.</h5>
             </div>
         `;
-    }else {
-    // Creamos dinámicamente una lista de productos en el carrito
+    } else {
         cartData.forEach(item => {
             const productDiv = document.createElement('div'); 
             productDiv.classList.add('cart-item', 'col-md-12', 'position-relative');
 
-            // Crear el botón de cierre
             const closeButton = document.createElement('button');
             closeButton.textContent = '×';
             closeButton.classList.add('close-button');
@@ -58,10 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Eliminar el item del carrito
                 cartData = cartData.filter(cartItem => cartItem !== item);
                 localStorage.setItem('cartItems', JSON.stringify(cartData));
-                productDiv.remove(); // Eliminar el producto de la interfaz
-                updateTotals(); // Actualizo los totales después de eliminar
+                productDiv.remove();
+                updateTotals();
+                updateCartBadge(); // Actualiza el badge después de eliminar
 
-                // Verifico si el carrito está vacío 
                 if (cartData.length === 0) {
                     cartContainer.innerHTML = `
                         <div class="text-center">
@@ -71,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             };
 
-            // Agrego el botón de cierre al div del producto
             productDiv.appendChild(closeButton);
 
             const productRow = document.createElement('div');
@@ -108,31 +108,28 @@ document.addEventListener("DOMContentLoaded", function() {
             subtotalDiv.classList.add('col-md-3');
             const subtotalText = document.createElement('p');
 
-            // Función para calcular subtotal y actualizar totales
             const calculateSubtotal = () => {
                 const quantity = parseInt(quantityInput.value);
                 const subtotal = item.cost * quantity;
                 subtotalText.textContent = `Subtotal: ${item.currency} ${subtotal.toFixed(2)}`;
-                item.quantity = quantity; // Actualizo la cantidad del producto en cartData
-                updateTotals(); // Actualizo los totales
+                item.quantity = quantity; // Actualiza la cantidad del producto en cartData
+                updateTotals();
+                updateCartBadge(); // Actualiza el badge con cada cambio de cantidad
             };
 
             calculateSubtotal();
             quantityInput.addEventListener('input', calculateSubtotal);
 
-            // Agregamos los elementos al contenedor
             subtotalDiv.appendChild(subtotalText);
-
             productRow.appendChild(productInfoDiv);
             quantityDiv.appendChild(quantityInput);
             productRow.appendChild(quantityDiv);
             productRow.appendChild(costDiv);
             productRow.appendChild(subtotalDiv);
-            
             productDiv.appendChild(productRow);
             cartContainer.appendChild(productDiv);
-        });
-    }
+        }
+)}
 
     // Cierre de sesión
     document.getElementById("logOut").addEventListener("click", function(event) {
@@ -141,5 +138,6 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.replace("login.html");
     });
 
+    updateCartBadge(); // Llama aquí para actualizar el badge al cargar la página
     updateTotals(); // Llamada para actualizar totales al cargar la página
 });
