@@ -47,13 +47,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const closeButton = document.createElement('button');
             closeButton.textContent = '×';
             closeButton.classList.add('close-button');
-            closeButton.style.position = 'absolute';
-            closeButton.style.top = '10px';
-            closeButton.style.right = '10px';
-            closeButton.style.background = 'none';
-            closeButton.style.border = 'none';
-            closeButton.style.cursor = 'pointer';
-            closeButton.style.fontSize = '20px';
 
             closeButton.onclick = () => {
                 // Eliminar el item del carrito
