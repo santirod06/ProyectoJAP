@@ -241,7 +241,7 @@ a.custom-card:hover {
   border-radius: 50%; /* Bordes redondeados */
   padding: 0.2em 0.4em; /* Espaciado interno */
   font-size: 0.8em; /* Tamaño de fuente */
-  position: relative; /* Cambiado a relative */
+  position: relative; 
   margin-left: 0.5em; /* Espacio entre el texto y el badge */
   vertical-align: middle; /* Alinear verticalmente con el texto */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
