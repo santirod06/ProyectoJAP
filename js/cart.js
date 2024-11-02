@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Nueva función para actualizar el badge del carrito
     const updateCartBadge = () => {
         const totalQuantity = cartData.reduce((total, item) => total + item.quantity, 0);
-        const badge = document.getElementById('cart-badge'); // Asegúrate de que este ID existe en tu HTML
+        const badge = document.getElementById('cart-badge'); 
         badge.textContent = totalQuantity > 0 ? totalQuantity : ''; // Actualiza el badge o lo quita si está vacío
     };
 
