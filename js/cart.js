@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let totalUSD = 0;  // Total en dólares
     let totalUYU = 0;  // Total en pesos
 
-    // Nueva función para actualizar el badge del carrito
+    // Actualizar el badge del carrito
     const updateCartBadge = () => {
         const totalQuantity = cartData.reduce((total, item) => total + item.quantity, 0);
         const badge = document.getElementById('cart-badge'); 
-        badge.textContent = totalQuantity > 0 ? totalQuantity : ''; // Actualiza el badge o lo quita si está vacío
+        badge.textContent = totalQuantity > 0 ? totalQuantity : ''; // Actualiza el badge o lo saca si está vacío
     };
 
     const updateTotals = () => {
@@ -47,6 +47,13 @@ document.addEventListener("DOMContentLoaded", function() {
             const closeButton = document.createElement('button');
             closeButton.textContent = '×';
             closeButton.classList.add('close-button');
+            closeButton.style.position = 'absolute';
+            closeButton.style.top = '10px';
+            closeButton.style.right = '10px';
+            closeButton.style.background = 'none';
+            closeButton.style.border = 'none';
+            closeButton.style.cursor = 'pointer';
+            closeButton.style.fontSize = '20px';
 
             closeButton.onclick = () => {
                 // Eliminar el item del carrito
@@ -131,6 +138,6 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.replace("login.html");
     });
 
-    updateCartBadge(); // Llama aquí para actualizar el badge al cargar la página
+    updateCartBadge(); // Llamada para actualizar el badge al cargar la página
     updateTotals(); // Llamada para actualizar totales al cargar la página
 });

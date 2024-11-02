@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.replace('login.html');
     }
 
-    // Obtén el ID del producto del almacenamiento local
+    // Obtiene el ID del producto del almacenamiento local
     const productId = localStorage.getItem('selectedProductId');
     let product; // Declara 'product' en un ámbito más amplio
 
     // Verifica si el ID existe
     if (productId) {
-        // Hacer una solicitud para obtener la información del producto
+        // Hace una solicitud para obtener la información del producto
         fetch(`https://japceibal.github.io/emercado-api/products/${productId}.json`)
             .then(response => {
                 if (!response.ok) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                product = data; // Asigna el producto aquí
+                product = data; // Asigna el producto
 
                 // Actualiza el contenido de la página con la información del producto
                 document.getElementById('product-name').textContent = product.name || 'Nombre no disponible';
@@ -138,12 +138,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Parte de enviar y escribir comentarios
-        const sendButton = document.getElementById('input-button'); // Asegúrate de que este selector es correcto
+        const sendButton = document.getElementById('input-button'); 
         sendButton.addEventListener('click', () => { // Le añadimos funcionalidad
             const emailInput = localStorage.getItem("userRegistered"); // Obtenemos correo del usuario
             const nameInput = emailInput.split("@")[0]; // Extraemos solo el nombre del usuario
 
-            const dateInput = new Date().toLocaleDateString(); // Generar la fecha automáticamente
+            const dateInput = new Date().toLocaleDateString(); // Genera la fecha automáticamente
             const opinionInput = document.querySelector('textarea').value; // Cada una de las casillas que llenamos //
             const ratingInput = document.querySelector('input[name="rating"]:checked'); 
 
