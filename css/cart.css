@@ -246,3 +246,22 @@ a.custom-card:hover {
   vertical-align: middle; /* Alinear verticalmente con el texto */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
 }
+
+.compra-envio {
+  width: 80%;
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.3rem;
+}
+.direccion-de-envio {
+  margin-top: 4rem;
+}
+.mb-0 {
+  color: grey;
+}
+
+#button {
+  margin-top:2rem;
+  font-size: 1.25rem;
+}
