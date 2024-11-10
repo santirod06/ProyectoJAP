@@ -221,10 +221,7 @@ a.custom-card:hover {
   height: auto;
   margin-right: 10px; /* Espaciado entre la imagen y el texto */
 }
-#total {
-  font-size: 1.5rem; 
-  font-weight: bold;
-}
+
 .close-button {
   position: absolute;
   top: 10px;
@@ -264,4 +261,8 @@ a.custom-card:hover {
 #button {
   margin-top:2rem;
   font-size: 1.25rem;
+}
+
+.sub-title-cart{
+  font-weight: bold;
 }

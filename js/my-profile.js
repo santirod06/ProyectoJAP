@@ -18,25 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   }
 
-  // Modo nocturno
-  const toggleButton = document.getElementById('toggle-mode');
-  const icon = toggleButton.querySelector('i');
-  if (localStorage.getItem('mode') === 'dark') {
-      document.body.classList.add('dark-mode');
-      icon.classList.replace('fa-moon', 'fa-sun');
-  }
-  toggleButton.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
-
-      if (document.body.classList.contains('dark-mode')) {
-          icon.classList.replace('fa-moon', 'fa-sun');
-          localStorage.setItem('mode', 'dark');
-      } else {
-          icon.classList.replace('fa-sun', 'fa-moon');
-          localStorage.setItem('mode', 'light');
-      }
-  });
-
   // En esta parte verificamos que se hayan llenado todos los campos correctamente para poder guardarlos en el local storage
   document.getElementById('formulario').addEventListener('submit', function(event) {
       event.preventDefault();
@@ -73,11 +54,5 @@ document.addEventListener("DOMContentLoaded", function() {
       } else {
           alert('Debe completar todos los campos obligatorios');
       }
-  });
-  // Cierre de sesión
-  document.getElementById("logOut").addEventListener("click", function(event) {
-      event.preventDefault();
-      localStorage.removeItem('userRegistered');
-      window.location.replace('login.html');
   });
 });

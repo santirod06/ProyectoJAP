@@ -1,38 +1,91 @@
-document.addEventListener("DOMContentLoaded", function() { 
-    if (!localStorage.getItem('userRegistered')) {
-        window.location.href = 'login.html';
-    }
-    
+document.addEventListener("DOMContentLoaded", async function() {
     const cartContainer = document.getElementById('cart-container');
-    let cartData = JSON.parse(localStorage.getItem('cartItems')) || []; 
+    let cartData = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+    let totalUYU = 0;
+    let shippingCost = 0;
+    
+    const shippingOptions = { A: 0.15, B: 0.07, C: 0.05 };
+    let exchangeRateUSDToUYU = 0;
+    
+    // Obtener la tasa de cambio
+    const getExchangeRate = async () => {
+        try {
+            const response = await fetch('https://v6.exchangerate-api.com/v6/cbd61d864d4082309e0ac80d/latest/USD');
+            const data = await response.json();
+            if (data.result === 'success' && data.conversion_rates && data.conversion_rates.UYU) {
+                exchangeRateUSDToUYU = data.conversion_rates.UYU;
+            } else {
+                console.error("Tasa de cambio no encontrada en la respuesta de la API:", data);
+            }
+        } catch (error) {
+            console.error('Error obteniendo la tasa de cambio:', error);
+        }
+    };
 
-    let totalUSD = 0;  // Total en dólares
-    let totalUYU = 0;  // Total en pesos
-
+    await getExchangeRate();
+    
     // Actualizar el badge del carrito
     const updateCartBadge = () => {
         const totalQuantity = cartData.reduce((total, item) => total + item.quantity, 0);
-        const badge = document.getElementById('cart-badge'); 
-        badge.textContent = totalQuantity > 0 ? totalQuantity : ''; // Actualiza el badge o lo saca si está vacío
+        const badge = document.getElementById('cart-badge');
+        badge.textContent = totalQuantity > 0 ? totalQuantity : '';
     };
 
-    const updateTotals = () => {
-        totalUSD = 0;
-        totalUYU = 0;
+    // Actualizar el subtotal del carrito
+    const updateSubtotalCart = () => {
+        if (exchangeRateUSDToUYU === 0) {
+            console.log("La tasa de cambio aún no ha sido cargada.");
+            return;
+        }
 
+        let subtotal = 0;
         cartData.forEach(cartItem => {
             const itemSubtotal = cartItem.cost * cartItem.quantity;
             if (cartItem.currency === 'USD') {
-                totalUSD += itemSubtotal;
+                subtotal += itemSubtotal * exchangeRateUSDToUYU; // Convertir a UYU si está en USD
             } else if (cartItem.currency === 'UYU') {
-                totalUYU += itemSubtotal;
+                subtotal += itemSubtotal;
             }
         });
 
-        document.getElementById('total').textContent = `Total: USD ${totalUSD.toFixed(2)} + UYU ${totalUYU.toFixed(2)}`;
+        updateShippingCost(subtotal); 
+        const total = subtotal + shippingCost;
+
+        // Actualizar los elementos del DOM con los costos
+        const totalElement = document.getElementById('total');
+        const shippingCostElement = document.getElementById('shipping-cost');
+        const totalCostElement = document.getElementById('totalCosto');
+
+        totalElement.textContent = `Subtotal: UYU ${subtotal.toFixed(2)}`;
+        shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
+        totalCostElement.textContent = `Total: UYU ${total.toFixed(2)}`;
     };
 
-    // Verifica si el carrito está vacío
+    // Función para actualizar el costo de envío
+    const updateShippingCost = (subtotal) => {
+        // Si el subtotal no es válido, el costo de envío es 0
+        if (isNaN(subtotal) || subtotal <= 0) {
+            shippingCost = 0;
+            return;
+        }
+
+        const selectedOption = document.querySelector('input[name="opciones"]:checked');
+        if (selectedOption) {
+            const shippingRate = shippingOptions[selectedOption.value] || 0;
+            shippingCost = subtotal * shippingRate;
+        } else {
+            shippingCost = 0;  
+        }
+
+        // Actualizar el costo de envío en el DOM
+        const shippingCostElement = document.getElementById('shipping-cost');
+        if (shippingCostElement) {
+            shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
+        }
+    };
+
+    // Verificar si el carrito está vacío
     if (cartData.length === 0) {
         cartContainer.innerHTML = `
             <div class="text-center">
@@ -40,29 +93,24 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         `;
     } else {
+        // Mostrar los productos en el carrito
         cartData.forEach(item => {
-            const productDiv = document.createElement('div'); 
+            const productDiv = document.createElement('div');
             productDiv.classList.add('cart-item', 'col-md-12', 'position-relative');
 
+            // Botón para eliminar el producto
             const closeButton = document.createElement('button');
             closeButton.textContent = '×';
             closeButton.classList.add('close-button');
-            closeButton.style.position = 'absolute';
-            closeButton.style.top = '10px';
-            closeButton.style.right = '10px';
-            closeButton.style.background = 'none';
-            closeButton.style.border = 'none';
-            closeButton.style.cursor = 'pointer';
-            closeButton.style.fontSize = '20px';
-
             closeButton.onclick = () => {
-                // Eliminar el item del carrito
                 cartData = cartData.filter(cartItem => cartItem !== item);
                 localStorage.setItem('cartItems', JSON.stringify(cartData));
                 productDiv.remove();
-                updateTotals();
-                updateCartBadge(); // Actualiza el badge después de eliminar
-
+                
+                // Actualizar los totales después de eliminar un producto
+                updateSubtotalCart();
+                updateCartBadge();
+                updateShippingCost(totalUYU); // Recálculo de costo de envío
                 if (cartData.length === 0) {
                     cartContainer.innerHTML = `
                         <div class="text-center">
@@ -74,28 +122,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
             productDiv.appendChild(closeButton);
 
+            // Contenedor de la fila de producto
             const productRow = document.createElement('div');
-            productRow.classList.add('row', 'align-items-center'); 
+            productRow.classList.add('row', 'align-items-center');
             const productInfoDiv = document.createElement('div');
             productInfoDiv.classList.add('col-md-4', 'd-flex', 'align-items-center');
 
+            // Imagen del producto
             const productImg = document.createElement('img');
-            productImg.src = item.image; 
+            productImg.src = item.image;
             productImg.alt = item.name;
             productImg.classList.add('cart-item-img');
 
+            // Nombre del producto
             const productName = document.createElement('h5');
             productName.textContent = item.name;
 
             productInfoDiv.appendChild(productImg);
             productInfoDiv.appendChild(productName);
 
+            // Costo del producto
             const costDiv = document.createElement('div');
             costDiv.classList.add('col-md-2');
             const costText = document.createElement('p');
             costText.textContent = `${item.currency} ${item.cost.toFixed(2)}`;
             costDiv.appendChild(costText);
 
+            // Cantidad del producto
             const quantityDiv = document.createElement('div');
             quantityDiv.classList.add('col-md-3');
             const quantityInput = document.createElement('input');
@@ -104,17 +157,22 @@ document.addEventListener("DOMContentLoaded", function() {
             quantityInput.min = '1';
             quantityInput.classList.add('form-control', 'quantity-input');
 
+            // Subtotal del producto
             const subtotalDiv = document.createElement('div');
             subtotalDiv.classList.add('col-md-3');
             const subtotalText = document.createElement('p');
 
+            // Función para recalcular el subtotal del producto
             const calculateSubtotal = () => {
                 const quantity = parseInt(quantityInput.value);
                 const subtotal = item.cost * quantity;
+                
+                item.quantity = quantity;  // Actualizar la cantidad en cartData
+                localStorage.setItem('cartItems', JSON.stringify(cartData));
                 subtotalText.textContent = `Subtotal: ${item.currency} ${subtotal.toFixed(2)}`;
-                item.quantity = quantity; // Actualiza la cantidad del producto en cartData
-                updateTotals();
-                updateCartBadge(); // Actualiza el badge con cada cambio de cantidad
+
+                updateSubtotalCart();
+                updateCartBadge();
             };
 
             calculateSubtotal();
@@ -128,16 +186,26 @@ document.addEventListener("DOMContentLoaded", function() {
             productRow.appendChild(subtotalDiv);
             productDiv.appendChild(productRow);
             cartContainer.appendChild(productDiv);
-        }
-)}
+        });
+    }
 
-    // Cierre de sesión
-    document.getElementById("logOut").addEventListener("click", function(event) {
-        event.preventDefault();
-        localStorage.removeItem('userRegistered');
-        window.location.replace("login.html");
+   // Nos aseguramos que haya una opción de envío seleccionada al cargar la página
+   const selectedOption = document.querySelector('input[name="opciones"]:checked');
+   if (!selectedOption) {
+       document.getElementById('opcionC').checked = true;  // Opción predeterminada
+   }
+   updateShippingCost();  // Actualizamos el costo de envío con la opción seleccionada
+
+    // Evento para cambiar la opción de envío
+    const shippingRadios = document.querySelectorAll('input[name="opciones"]');
+    shippingRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            updateShippingCost();
+            updateSubtotalCart();
+        });
     });
 
-    updateCartBadge(); // Llamada para actualizar el badge al cargar la página
-    updateTotals(); // Llamada para actualizar totales al cargar la página
+    // Llamadas iniciales para actualizar el badge y los totales
+    updateCartBadge();
+    updateSubtotalCart();
 });

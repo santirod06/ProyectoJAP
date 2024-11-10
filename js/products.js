@@ -229,36 +229,5 @@ cajasDeTexto.forEach(caja => {
 
 // Cargar productos al iniciar la página
 document.addEventListener('DOMContentLoaded', function() {
-    if (!localStorage.getItem('userRegistered')) {
-        window.location.replace('login.html');
-    }
     loadProducts();
-    //Cierre de sesión
-    document.getElementById("logOut").addEventListener("click",function(event){
-        event.preventDefault();
-        localStorage.removeItem('userRegistered');
-        window.location.replace("login.html");
-    })
-});
-
-const toggleButton = document.getElementById('toggle-mode');
-const icon = toggleButton.querySelector('i');
-
-// Verifica la preferencia almacenada en localStorage
-if (localStorage.getItem('mode') === 'dark') {
-  document.body.classList.add('dark-mode');
-  icon.classList.replace('fa-moon', 'fa-sun');
-}
-
-// Cambia entre los modos y almacena la preferencia
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  
-  if (document.body.classList.contains('dark-mode')) {
-    icon.classList.replace('fa-moon', 'fa-sun');
-    localStorage.setItem('mode', 'dark');
-  } else {
-    icon.classList.replace('fa-sun', 'fa-moon');
-    localStorage.setItem('mode', 'light');
-  }
 });
