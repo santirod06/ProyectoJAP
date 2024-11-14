@@ -16,6 +16,20 @@ document.addEventListener("DOMContentLoaded", function() {
           document.getElementById('profile-image').innerHTML =
               '<p>Aun no subiste ninguna foto de perfil </p>';
       }
+    const nombreGuardado = localStorage.getItem('nombre');
+    if (nombreGuardado) document.getElementById('name').value = nombreGuardado;
+
+    const segundoNombreGuardado = localStorage.getItem('segundoNombre');
+    if (segundoNombreGuardado) document.getElementById('secondName').value = segundoNombreGuardado;
+
+    const apellidoGuardado = localStorage.getItem('apellido');
+    if (apellidoGuardado) document.getElementById('lastName').value = apellidoGuardado;
+
+    const segundoApellidoGuardado = localStorage.getItem('segundoApellido');
+    if (segundoApellidoGuardado) document.getElementById('secondLastName').value = segundoApellidoGuardado;
+
+    const telefonoGuardado = localStorage.getItem('telefono');
+    if (telefonoGuardado) document.getElementById('number').value = telefonoGuardado;
   }
 
   // En esta parte verificamos que se hayan llenado todos los campos correctamente para poder guardarlos en el local storage
