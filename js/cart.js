@@ -53,11 +53,11 @@ document.addEventListener("DOMContentLoaded", async function() {
         const total = subtotal + shippingCost;
 
         // Actualizar los elementos del DOM con los costos
-        const totalElement = document.getElementById('total');
+        const subtotalCart = document.getElementById('subtotal-cart');
         const shippingCostElement = document.getElementById('shipping-cost');
-        const totalCostElement = document.getElementById('totalCosto');
+        const totalCostElement = document.getElementById('total-cost');
 
-        totalElement.textContent = `Subtotal: UYU ${subtotal.toFixed(2)}`;
+        subtotalCart.textContent = `Subtotal: UYU ${subtotal.toFixed(2)}`;
         shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
         totalCostElement.textContent = `Total: UYU ${total.toFixed(2)}`;
     };
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             return;
         }
 
-        const selectedOption = document.querySelector('input[name="opciones"]:checked');
+        const selectedOption = document.querySelector('input[name="shipping-options"]:checked');
         if (selectedOption) {
             const shippingRate = shippingOptions[selectedOption.value] || 0;
             shippingCost = subtotal * shippingRate;
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                 // Actualizar los totales después de eliminar un producto
                 updateSubtotalCart();
                 updateCartBadge();
-                updateShippingCost(totalUYU); // Recálculo de costo de envío
+                updateShippingCost(totalUYU); // Vuelvo a calcular el costo de envío
                 if (cartData.length === 0) {
                     cartContainer.innerHTML = `
                         <div class="text-center">
@@ -190,14 +190,14 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
    // Nos aseguramos que haya una opción de envío seleccionada al cargar la página
-   const selectedOption = document.querySelector('input[name="opciones"]:checked');
+   const selectedOption = document.querySelector('input[name="shipping-options"]:checked');
    if (!selectedOption) {
-       document.getElementById('opcionC').checked = true;  // Opción predeterminada
+       document.getElementById('standardOption').checked = true;  // Opción predeterminada
    }
    updateShippingCost();  // Actualizamos el costo de envío con la opción seleccionada
 
     // Evento para cambiar la opción de envío
-    const shippingRadios = document.querySelectorAll('input[name="opciones"]');
+    const shippingRadios = document.querySelectorAll('input[name="shipping-options"]');
     shippingRadios.forEach(radio => {
         radio.addEventListener('change', () => {
             updateShippingCost();

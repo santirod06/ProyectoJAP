@@ -19,7 +19,7 @@ nav a {
 }
 
 
-#usuario {
+#user-dropdown  {
   margin-left: auto; /* Empuja el elemento #user al final del contenedor */
   text-align: center; /* Centra el texto dentro del elemento #user */
   color: white;
@@ -244,14 +244,14 @@ a.custom-card:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
 }
 
-.compra-envio {
+.purchase-shipping {
   width: 80%;
   margin-top: 10rem;
   margin-left: auto;
   margin-right: auto;
   font-size: 1.3rem;
 }
-.direccion-de-envio {
+.shipping-address{
   margin-top: 4rem;
 }
 .mb-0 {

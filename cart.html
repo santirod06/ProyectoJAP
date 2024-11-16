@@ -33,7 +33,7 @@
           <li class="nav-item dropdown">
             <div class="dropdown">
               <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <span id="usuario"></span>
+                <span id="user-dropdown"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
@@ -58,32 +58,31 @@
     </div>
   </div>
   
-
-        <div class="compra-envio">
+        <div class="purchase-shipping">
           <div class="d-flex justify-content-between align-items-center mb-4"  id="userProfile"> 
               <h2> Proceso de compra </h2>
           </div>  
-            <form id="formulario">
-            <h4 class="tipo-de-envio sub-title-cart">Tipo de envío:</h4>
+            <form id="shipping-form">
+            <h4 class="shipping-type sub-title-cart">Tipo de envío:</h4>
             <div class="d-flex justify-content-around">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="opciones" id="opcionA" value="A">
-                <label class="form-check-label" for="opcionA">Premium</label>
+                <input class="form-check-input" type="radio" name="shipping-options" id="premiumOption" value="A">
+                <label class="form-check-label" for="premiumOption">Premium</label>
                 <p class="mb-0">2 a 6 días (15%)</p>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="opciones" id="opcionB" value="B">
-                <label class="form-check-label" for="opcionB">Express</label>
+                <input class="form-check-input" type="radio" name="shipping-options" id="expressOption" value="B">
+                <label class="form-check-label" for="expressOption">Express</label>
                 <p class="mb-0">5 a 8 días (7%)</p>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="opciones" id="opcionC" value="C">
-                <label class="form-check-label" for="opcionC">Standar</label>
+                <input class="form-check-input" type="radio" name="shipping-options" id="standardOption" value="C">
+                <label class="form-check-label" for="standardOption">Standard</label>
                 <p class="mb-0">12 a 15 días (5%)</p>
             </div>
           </div>
 
-              <h4 class="direccion-de-envio sub-title-cart">Dirección de envío:</h4>
+              <h4 class="shipping-address sub-title-cart">Dirección de envío:</h4>
               
               <div class="row mb-3">
                   <div class="col">
@@ -111,22 +110,22 @@
                   </div>
               </div>
 
-              <h4 class="tipo-de-envio sub-title-cart">Forma de pago:</h4>
+              <h4 class="shipping-type sub-title-cart">Forma de pago:</h4>
                 <div class="d-flex justify-content-around">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="opciones-pago" id="opcionA" value="A">
-                  <label class="form-check-label" for="opcionA">Tarjeta de crédito</label>
+                  <input class="form-check-input" type="radio" name="payment-options" id="cardOption" value="A">
+                  <label class="form-check-label" for="cardOption">Tarjeta de crédito</label>
                 </div>
                <div class="form-check">
-                 <input class="form-check-input" type="radio" name="opciones-pago" id="opcionB" value="B">
-                 <label class="form-check-label" for="opcionB">Transferencia bancaria</label>
+                 <input class="form-check-input" type="radio" name="payment-options" id="transferOption" value="B">
+                 <label class="form-check-label" for="transferOption">Transferencia bancaria</label>
                </div>
                </div>
                <div>
-                <h4 class="tipo-de-envio sub-title-cart">Costos:</h4>
-                <p id="total">Subtotal:</p>
+                <h4 class="shipping-type sub-title-cart">Costos:</h4>
+                <p id="subtotal-cart">Subtotal:</p>
                 <p id="shipping-cost">Costo de envío: $0</p>
-                <p class="sub-title-cart"id="totalCosto">Total:</p>
+                <p class="sub-title-cart"id="total-cost">Total:</p>
               </div>
                <button type="submit" class="btn btn-primary" id="button">Finalizar compra </button>
             </form>
