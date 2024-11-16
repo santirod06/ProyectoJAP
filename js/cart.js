@@ -7,6 +7,28 @@ document.addEventListener("DOMContentLoaded", async function() {
     
     const shippingOptions = { A: 0.15, B: 0.07, C: 0.05 };
     let exchangeRateUSDToUYU = 0;
+
+    // Función para actualizar el costo de envío
+    const updateShippingCost = (subtotal) => {
+        if (isNaN(subtotal) || subtotal <= 0) {
+            shippingCost = 0;
+            return;
+        }
+
+        const selectedOption = document.querySelector('input[name="shipping-options"]:checked');
+        if (selectedOption) {
+            const shippingRate = shippingOptions[selectedOption.value] || 0;
+            shippingCost = subtotal * shippingRate;
+        } else {
+            shippingCost = 0;  
+        }
+
+        // Actualizar el costo de envío en el DOM
+        const shippingCostElement = document.getElementById('shipping-cost');
+        if (shippingCostElement) {
+            shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
+        }
+    };
     
     // Obtener la tasa de cambio
     const getExchangeRate = async () => {
@@ -60,29 +82,6 @@ document.addEventListener("DOMContentLoaded", async function() {
         subtotalCart.textContent = `Subtotal: $UYU ${subtotal.toFixed(2)}`;
         shippingCostElement.textContent = `Costo de envío: $UYU ${shippingCost.toFixed(2)}`;
         totalCostElement.textContent = `Total: $UYU ${total.toFixed(2)}`;
-    };
-
-    // Función para actualizar el costo de envío
-    const updateShippingCost = (subtotal) => {
-        // Si el subtotal no es válido, el costo de envío es 0
-        if (isNaN(subtotal) || subtotal <= 0) {
-            shippingCost = 0;
-            return;
-        }
-
-        const selectedOption = document.querySelector('input[name="shipping-options"]:checked');
-        if (selectedOption) {
-            const shippingRate = shippingOptions[selectedOption.value] || 0;
-            shippingCost = subtotal * shippingRate;
-        } else {
-            shippingCost = 0;  
-        }
-
-        // Actualizar el costo de envío en el DOM
-        const shippingCostElement = document.getElementById('shipping-cost');
-        if (shippingCostElement) {
-            shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
-        }
     };
 
     // Verificar si el carrito está vacío
