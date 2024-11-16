@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", async function() {
         const shippingCostElement = document.getElementById('shipping-cost');
         const totalCostElement = document.getElementById('total-cost');
 
-        subtotalCart.textContent = `Subtotal: UYU ${subtotal.toFixed(2)}`;
-        shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
-        totalCostElement.textContent = `Total: UYU ${total.toFixed(2)}`;
+        subtotalCart.textContent = `Subtotal: $UYU ${subtotal.toFixed(2)}`;
+        shippingCostElement.textContent = `Costo de envío: $UYU ${shippingCost.toFixed(2)}`;
+        totalCostElement.textContent = `Total: $UYU ${total.toFixed(2)}`;
     };
 
     // Función para actualizar el costo de envío
