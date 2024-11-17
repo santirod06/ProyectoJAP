@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         // Actualizar el costo de envío en el DOM
         const shippingCostElement = document.getElementById('shipping-cost');
         if (shippingCostElement) {
-            shippingCostElement.textContent = `Costo de envío: UYU ${shippingCost.toFixed(2)}`;
+            shippingCostElement.textContent = `Costo de envío: $UYU ${shippingCost.toFixed(2)}`;
         }
     };
     
@@ -188,12 +188,12 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
     }
 
-   // Nos aseguramos que haya una opción de envío seleccionada al cargar la página
-   const selectedOption = document.querySelector('input[name="shipping-options"]:checked');
-   if (!selectedOption) {
-       document.getElementById('standardOption').checked = true;  // Opción predeterminada
-   }
-   updateShippingCost();  // Actualizamos el costo de envío con la opción seleccionada
+    // Nos aseguramos que haya una opción de envío seleccionada al cargar la página
+    const selectedOption = document.querySelector('input[name="shipping-options"]:checked');
+    if (!selectedOption) {
+        document.getElementById('standardOption').checked = true;  // Opción predeterminada
+    }
+    updateShippingCost();  // Actualizamos el costo de envío con la opción seleccionada
 
     // Evento para cambiar la opción de envío
     const shippingRadios = document.querySelectorAll('input[name="shipping-options"]');
@@ -207,4 +207,100 @@ document.addEventListener("DOMContentLoaded", async function() {
     // Llamadas iniciales para actualizar el badge y los totales
     updateCartBadge();
     updateSubtotalCart();
+
+    // Crear divs correspondientes a datos de pago
+    const paymentContainer = document.getElementById("paymentContainer");
+    const cardPaymentOption = document.getElementById("cardOption");
+    const bankTransferPaymentOption = document.getElementById("transferOption");
+
+    // Limpiamos los contenedores de pagos
+    function cleanPaymentContainer() {
+        paymentContainer.innerHTML = "";
+    }
+
+    // Muestra la información de pagos con Tarjeta de Crédito
+    function showCardForm() {
+        const cardDiv = document.createElement("div");
+        cardDiv.classList.add("form-section");
+        cardDiv.innerHTML = `
+            <h4>Detalles de la Tarjeta</h4>
+            <label for="card-number">Número de tarjeta:</label>
+            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+            <label for="expiration-date">Fecha de vencimiento:</label>
+            <input type="text" id="expiration-date" placeholder="MM/AA" required>
+            <label for="cvv">CVV:</label>
+            <input type="number" id="cvv" placeholder="123" required>
+        `;
+        paymentContainer.appendChild(cardDiv);
+    }
+
+    // Muestra la información de pagos con Transferencia bancaria
+    function showBankForm() {
+        const bankDiv = document.createElement("div");
+        bankDiv.classList.add("form-section");
+        bankDiv.innerHTML = `
+            <h4>Detalles de Transferencia Bancaria</h4>
+            <label for="titular-name">Nombre del titular:</label>
+            <input type="text" id="titular-name" placeholder="Nombre Apellido" required>
+            <label for="bank-name">Nombre del Banco:</label>
+            <input type="text" id="bank-name" placeholder="Banco Ejemplo" required>
+            <label for="numero-cuenta">Número de Cuenta: 1234 5678 9012</label>
+        `;
+        paymentContainer.appendChild(bankDiv);
+    }
+
+    // Validación antes de proceder con la compra
+    function validateForm() {
+        let isValid = true;
+
+        // Validar los campos según el método de pago seleccionado
+        if (cardPaymentOption.checked) {
+            const cardNumber = document.getElementById("card-number").value.trim();
+            const expirationDate = document.getElementById("expiration-date").value.trim();
+            const cvv = document.getElementById("cvv").value.trim();
+
+            if (!cardNumber || !expirationDate || !cvv) {
+                isValid = false;
+                alert("Por favor, complete todos los campos de la tarjeta.");
+            }
+        } else if (bankTransferPaymentOption.checked) {
+            const titularName = document.getElementById("titular-name").value.trim();
+            const bankName = document.getElementById("bank-name").value.trim();
+
+            if (!titularName || !bankName) {
+                isValid = false;
+                alert("Por favor, complete todos los campos de la transferencia.");
+            }
+        } else {
+            isValid = false;
+            alert("Por favor, seleccione un método de pago.");
+        }
+
+        return isValid;
+    }
+
+    // Escuchar los cambios de método de pago
+    cardPaymentOption.addEventListener("change", () => {
+        cleanPaymentContainer();
+        showCardForm();
+    });
+
+    bankTransferPaymentOption.addEventListener("change", () => {
+        cleanPaymentContainer();
+        showBankForm();
+    });
+
+    // Modal para mostrar el estado de la compra
+    const completedBuyBtn = document.getElementById("button");
+    const completedBuyAnimation = document.getElementById("buy-completed");
+
+    completedBuyBtn.addEventListener("click", (event) => {
+        event.preventDefault(); // Evita que la página se recargue
+        if (validateForm()) {
+            completedBuyAnimation.style.display = "flex";
+            setTimeout(() => {
+                window.location.href = "/index.html";
+            }, 3000); // Redirección después de 3 segundos
+        }
+    });
 });
