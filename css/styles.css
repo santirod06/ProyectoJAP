@@ -18,14 +18,6 @@ nav a {
   align-items: center;
 }
 
-
-#usuario {
-  margin-left: auto; /* Empuja el elemento #user al final del contenedor */
-  text-align: center; /* Centra el texto dentro del elemento #user */
-  color: white;
-  font-family: 'Verdana', serif !important;
-
-}
 /* Menu desplegable del nombre */
 .dropdown-menu-dark .dropdown-item {
   color: white; 
