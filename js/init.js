@@ -46,11 +46,12 @@ if (!localStorage.getItem('userRegistered')) {
 
 //Modo noche/día
 const toggleButton = document.getElementById('toggle-mode');
-const icon = toggleButton.querySelector('i');
-// Verifica la preferencia almacenada en localStorage
-if (localStorage.getItem('mode') === 'dark') {
-  document.body.classList.add('dark-mode');
-  icon.classList.replace('fa-moon', 'fa-sun');
+if(toggleButton){
+  const icon = toggleButton.querySelector('i');
+  // Verifica la preferencia almacenada en localStorage
+  if (localStorage.getItem('mode') === 'dark') {
+    document.body.classList.add('dark-mode');
+    icon.classList.replace('fa-moon', 'fa-sun');
 }
 // Cambia entre los modos y almacena la preferencia
 toggleButton.addEventListener('click', () => {
@@ -64,6 +65,7 @@ toggleButton.addEventListener('click', () => {
     localStorage.setItem('mode', 'light');
   }
 });
+} 
 
 // Badge
 let cartData = JSON.parse(localStorage.getItem('cartItems')) || [];
