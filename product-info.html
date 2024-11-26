@@ -15,7 +15,8 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -38,7 +39,7 @@
           <!--Menú desplegable para el nombre-->
           <li class="nav-item dropdown">
             <div class="dropdown">
-                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><span id="user-dropdown"> </span></button> 
+                <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><span id="usuario"> </span></button> 
               </button>
               <ul class="dropdown-menu dropdown-menu-dark">
                 <li>
@@ -101,7 +102,7 @@
               <label for="star5" class="fas fa-star"></label>
           </div>
           
-          <!-- Opinión -->
+          <!-- opinión -->
           <textarea class="form-control mt-3" id= "input-opinion" placeholder="Escribe tu opinión aquí..." rows="3"></textarea>
           
           <!-- Boton para enviar -->
@@ -112,7 +113,9 @@
 
     <!-- Productos relacionados -->
     <h4 class="related-products-title"> Estos productos podrían ser de tu interés: </h4>
-    <div id="related-products-container" class="related-products cursor-active"></div>
+    <div id="related-products-container" class="related-products"></div>
+    
+  
     </div>
   </main>
   <footer class="text-muted">
@@ -135,6 +138,7 @@
   <script src="js/product-info.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/user.js"></script>
+  <script src="js/cart-badge.js"></script>
 </body>
 
 </html>

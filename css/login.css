@@ -1,3 +1,4 @@
+/*Cambio todas las medidas absolutas a sus equivalentes relativas*/
 /*Realizo cambios para centrar la imagen de fondo*/ 
 #body_login {
   background-image: url(../img/login.png);
@@ -81,6 +82,7 @@
 
 /*Tablet*/
 @media only screen and (min-width: 321px) and (max-width: 768px) {
+  /*Mejora en la visualización del login*/
   .login { 
     width: 22rem;
     height: 27rem;
@@ -99,19 +101,19 @@
   height: 4rem;
   font-size: 1.5rem;
 }
-  
+  /*Mejora en la visualización del footer*/
 #footer {
   margin-top: 2.5rem;
    }
 #footer p{
   font-size: 1.5rem;
 }
-  
+  /*Mejora visualización alert*/
 .alert p{
   font-size: 1.5rem;
   text-align: center;
 }
-
+/*Aumento el blur para visualizar mejor el contenido*/
 #body_login{
   backdrop-filter: blur(7px);
 }
@@ -119,26 +121,27 @@
 
 /*Celular*/
 @media only screen and (max-width: 320px) {
+   /*Ajustes para el tamaño del login en el teléfono*/
   .login {
      height: 18rem;
      padding: 1rem;
     }
-  
+    /*Ajustes tamaño del contenedor del login*/
     #container_flexbox{
       width: 90%;
     }
-    
+    /*Reducir espacio entre el elementos del login*/
   .container_login{
     margin-bottom: 0.10rem;
   }
-  
+  /*Mejorar el footer*/
     #footer {
    margin-top: 3.5rem;
     }
     #footer p {
        font-size: 0.9rem;
        }
-  
+  /*Ajuste para que en el teléfono el login no se vea tan abajo*/
   #container_flexbox{
     position: absolute;
     top: 40%;
