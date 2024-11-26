@@ -59,7 +59,16 @@ nav a {
   font-weight: bold;
 }
 
-@media (min-width: 768px) {
+/* MODO CELULAR */
+@media (max-width: 568px) {
+  .jumbotron {
+    padding-top: 3rem;
+    padding-bottom: 3rem; 
+  }
+}
+
+/* MODO TABLET */
+@media (min-width: 569px) and (max-width: 768px) {
   .jumbotron {
     padding-top: 6rem;
     padding-bottom: 6rem;
