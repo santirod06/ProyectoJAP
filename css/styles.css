@@ -18,17 +18,9 @@ nav a {
   align-items: center;
 }
 
-
-#usuario {
-  margin-left: auto; /* Empuja el elemento #user al final del contenedor */
-  text-align: center; /* Centra el texto dentro del elemento #user */
-  color: white;
-  font-family: 'Verdana', serif !important;
-
-}
 /* Menu desplegable del nombre */
 .dropdown-menu-dark .dropdown-item {
-  color: white; /* Cambia el color del texto a blanco */
+  color: white; 
 }
 
 .bd-placeholder-img {
@@ -226,23 +218,22 @@ a.custom-card:hover {
   text-align: center;
 }
 /*botones orden*/
-.sort-buttons { /* Estilo para alinear los botones a la derecha */
+.sort-buttons { 
   text-align: right;
-  padding: 10px; /* Añade un poco de espacio alrededor del contenedor */
+  padding: 10px; 
 }
 
 /* Estilo para los botones */
 .sort-buttons button {
-  background: none; /* Elimina el fondo del botón por defecto */
-  border: none; /* Elimina el borde del botón por defecto */
-  padding: 0; /* Elimina el padding por defecto */
-  margin-left: 10px; /* Añade espacio entre los botones */
+  background: none; 
+  border: none; 
+  padding: 0; 
+  margin-left: 10px; 
 }
 
-/* Estilo para las imágenes dentro de los botones */
 .sort-buttons img {
-  width: 2.5rem; /* Ajusta el tamaño de la imagen según lo necesites */
-  height: 2.5rem; /* Mantiene la proporción de la imagen */
+  width: 2.5rem; 
+  height: 2.5rem; 
 }
 
 /*Agregado a la linea 42 products.html */
@@ -337,7 +328,7 @@ body .mode-button i {
 .dark-mode #product-sold{
   color: white;
 }
-.dark-mode .comentario{
+.dark-mode .comment{
   background-color: #1f1d1d;
 }
 .dark-mode #comments-container{
@@ -460,7 +451,7 @@ body .mode-button i {
     width: 35%;
   }
     /* My profile celular */
-    #formulario {
+    #user-data-form {
       font-size: .75rem;
     }
     .form-control {
@@ -478,10 +469,10 @@ body .mode-button i {
       font-size: 1.5rem;
       margin-top: 1rem;
     }
-    #button-guardar {
+    #save-button {
       font-size: .75rem;
     }
-  .sort-buttons { /* Estilo para alinear los botones a la derecha */
+  .sort-buttons { 
     display: flex;
     justify-content: space-around;
   }
@@ -617,7 +608,7 @@ body .mode-button i {
   .manual-inputs > input{
     width: 50%;
   }
-  .sort-buttons { /* Estilo para alinear los botones a la derecha */
+  .sort-buttons { 
     display: flex;
     justify-content: space-around;
   }
@@ -700,38 +691,38 @@ body .mode-button i {
     height: 30px;
     margin: auto;
   }
-  /* Modifica las dimensiones del buscador */
+
   #search{
     font-size: 20px;
     width: 100%;
     margin-top: 20px;
   }
-  /* Modifica el container principal */
+  
   .flex-container{
     display: flex;
     padding: 10px;
   }
-  /* Modifica las dimensiones del area de cada producto */
+
   .flex-container > div {
     width: 500px;
     height: 290px;
     box-sizing: border-box;
     border-radius: 4%;
   }
-  /* Modifica las dimensiones de las fotos de los productos */
+ 
   .flex-container > div > img{
     display: flex;
     margin: auto;
     width: 250px;
     height: auto;
   }
-  /* Modifica las dimensiones de los detalles */
+  
   .card-text{
     margin: 0;
     font-size: 13px;
   }
 
-  /* Product-info */
+
   #product-info {
     text-align: center;
   }
@@ -753,7 +744,6 @@ body .mode-button i {
     color: black;
   }
 
-  /* id carousel product-info */
   #carouselExample{
     width: 800px;
     height: auto;
@@ -761,7 +751,6 @@ body .mode-button i {
     align-items: center;
   }
   
-  /* Acá el contenedor de imágenes del producto */
   #product-images {
     display: flex;
     flex-wrap: wrap;
@@ -771,7 +760,7 @@ body .mode-button i {
   
   #product-images img {
     width: 100%;
-    max-width: 250px; /* Ajusta el tamaño max según lo necesario */
+    max-width: 250px; 
     height: auto;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -800,7 +789,7 @@ body .mode-button i {
   
   @media (max-width: 768px) {
     #product-images img {
-      max-width: 200px; /* Ajusta el tamaño máximo para pantallas más chicas */
+      max-width: 200px; 
     }
   
     #product-name {
@@ -854,26 +843,26 @@ body .mode-button i {
   direction: rtl; /* Para invertir la dirección de los estrellas */
 }
 .rating input {
-  display: none; /* Ocultar el input */
+  display: none; 
 }
 .rating label {
-  font-size: 2rem; /* Tamaño de las estrellas */
+  font-size: 2rem; 
   color: lightgray;
   cursor: pointer;
 }
 .rating label:hover,
 .rating label:hover ~ label {
-  color: gold; /* Color al pasar el mouse */
+  color: gold; 
 }
 .rating input:checked ~ label {
-  color: gold; /* Color de las estrellas seleccionadas */
+  color: gold; 
 }
 #comments-container {
   text-align: left; 
 }
 
 /*Estilos para la caja de comentarios*/
-.comentario {
+.comment {
   border: 1px solid #ccc;
   padding: 1rem;
   margin: 1rem 0;
@@ -883,31 +872,31 @@ body .mode-button i {
   font-size: 1rem;
 }
 
-.nombre {
+.name {
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.fecha {
+.date {
   font-size: 0.9rem;
   color: gray;
   margin-bottom: 0.5rem;
 }
 
-.calificacion {
+.qualification {
   color: orange;
   font-size: 1rem;;
 }
 
 #cart-badge {
-  background-color: #ff4757; /* Color de fondo */
-  color: #fff; /* Color del texto */
-  border-radius: 50%; /* Bordes redondeados */
-  padding: 0.2em 0.4em; /* Espaciado interno */
-  font-size: 0.8em; /* Tamaño de fuente */
-  position: relative; /* Cambiado a relative */
-  margin-left: 0.5em; /* Espacio entre el texto y el badge */
-  vertical-align: middle; /* Alinear verticalmente con el texto */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  background-color: #ff4757; 
+  color: #fff; 
+  border-radius: 50%; 
+  padding: 0.2em 0.4em; 
+  font-size: 0.8em; 
+  position: relative; 
+  margin-left: 0.5em; 
+  vertical-align: middle; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
 }
 

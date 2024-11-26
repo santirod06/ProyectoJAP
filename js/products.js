@@ -1,6 +1,6 @@
-let productsData = []; // Variable global para almacenar los productos
-let originalProductsData = []; // Variable global para almacenar los productos originales
-let currency = 'UYU'; // Valor por defecto para la moneda
+let productsData = []; 
+let originalProductsData = []; 
+let currency = 'UYU'; 
 
 // Función para cargar los productos
 function loadProducts() {
@@ -9,19 +9,19 @@ function loadProducts() {
     fetch('https://japceibal.github.io/emercado-api/cats_products/' + categoriaID + '.json')
         .then(response => {
             if (!response.ok) {
-                throw new Error("Error en la solicitud a la API: ") /*+ response.statusText);*/
+                throw new Error("Error en la solicitud a la API: ")
             };
             return response.json();
         })
         .then(data => {
             console.log(data);
-            productsData = data.products;// Guardar productos en la variable global
-            originalProductsData = [...productsData];// Guardar una copia de los productos originales
+            productsData = data.products;
+            originalProductsData = [...productsData];
             if (productsData.length > 0) {
-                currency = productsData[0].currency || 'UYU'; // Obtener la moneda del primer producto
+                currency = productsData[0].currency || 'UYU'; 
             }
-            displayProducts(productsData);// Mostrar los productos cargados
-            initializeSlider();// Inicializar el slider después de que se carguen los productos
+            displayProducts(productsData);
+            initializeSlider();
             initializeSearch();
         })
         .catch(error => {
@@ -39,7 +39,7 @@ function displayProducts(products) {
         let product = products[i];
         let price = (typeof product.cost === 'number' && !isNaN(product.cost)) ? product.cost.toLocaleString() : 'N/A';
         let soldCount = (typeof product.soldCount === 'number') ? product.soldCount : 'N/A';
-        let currency = product.currency ? product.currency : currency; // Usar la moneda del producto si está definida
+        let currency = product.currency ? product.currency : currency; 
         htmlContentToAppend += `
             <div class="card mb-4 product" data-id="${product.id}" data-price="${product.cost}">
                 <img src="${product.image}" class="card-img-top" alt="${product.name}">
@@ -54,29 +54,24 @@ function displayProducts(products) {
     }
     productList.innerHTML = htmlContentToAppend;
 
-    // Asignar el evento después de que los productos se hayan cargado
+    
     const productsElements = document.querySelectorAll('.product');
     productsElements.forEach(product => {
         product.addEventListener('click', function() {
-            // Obtén el ID del producto
             const productId = this.getAttribute('data-id');
-            // Guarda el ID en el almacenamiento local
             localStorage.setItem('selectedProductId', productId);
-            // Redirige a product-info.html
             window.location.href = 'product-info.html';
         });
     });
 }
 
-// Función para inicializar el slider de precios
 function initializeSlider() {
-    // Función para obtener el precio máximo de los productos
     const maxProductPrice = getMaxProductPrice();
     $("#price-slider").slider({
-        range: true, //Rango de valores
+        range: true, 
         min: 0,
-        max: maxProductPrice, // Usa el precio máximo de producto 
-        values: [0, maxProductPrice], // Inicializa el slider con el rango completo
+        max: maxProductPrice, 
+        values: [0, maxProductPrice], 
         slide: function(event, ui) { //Evento que se dispara cuando el usuario mueve el control del slider.
             // Actualiza los textos de los precios
             $("#min-price").text(`${currency} ${ui.values[0].toLocaleString()}`);
@@ -93,7 +88,7 @@ function initializeSlider() {
      $("#min-price-input").val(0);
      $("#max-price-input").val(maxProductPrice);
 
-     // Configura el evento para el botón de filtrar
+    
     $("#apply-price-range").on("click", function() {
         /*Obtiene el valor actual del campo de entrada como cadena de texto y la convierte en un número entero en base decimal*/
         const minPrice = parseInt($("#min-price-input").val(), 10); 
@@ -105,11 +100,9 @@ function initializeSlider() {
     });
 
     function getMaxProductPrice() {
-        // Revisar si productsData está vacío
         if (productsData.length === 0) {
-            return 0; // Si no hay productos, el precio máximo es 0
+            return 0;
         }
-        // Encontrar el precio máximo en productsData
         let maxPrice = Math.max(...productsData.map(product => parseFloat(product.cost))); //Nuevo array que contiene todos los precios de los productos convertidos a números.
         return maxPrice;
     }
@@ -125,33 +118,29 @@ function initializeSlider() {
     filterProducts($("#price-slider").slider("values", 0), $("#price-slider").slider("values", 1));
 }
 
-// Función para filtrar los productos por rango de precio definido
 function filterProducts(minPrice, maxPrice) {
     // Filtrar los productos basados en el rango de precios
     let filteredProducts = productsData.filter(product => {
         let price = parseFloat(product.cost);
         return price >= minPrice && price <= maxPrice;
     });
-    // Mostrar los productos filtrados
     displayProducts(filteredProducts);
 }
 
-// Función para inicializar la búsqueda
 function initializeSearch() {
-    // Asignamos el evento de filtro al campo de búsqueda
     const searchInput = document.getElementById('search');
     searchInput.addEventListener('input', function() {
         let query = this.value.toLowerCase(); //Evitamos que la búsqueda sea sensible a mayúsculas/minúsculas. 
         let filteredProducts = productsData.filter(product => {
             let name = product.name.toLowerCase();
             let description = product.description.toLowerCase();
-            return name.includes(query) || description.includes(query);//Devuelve true si la consulta de búsqueda está incluida en el nombre o en la descripción del producto.
+            return name.includes(query) || description.includes(query);
         });
         displayProducts(filteredProducts);
     });
 }
 
-//Función para ordenar los productos con tres botones
+//Función para ordenar los productos 
 function sortProducts(sortBy) {
     if (sortBy === 'price-asc') {
         productsData.sort((a, b) => a.cost - b.cost);
@@ -160,16 +149,16 @@ function sortProducts(sortBy) {
     } else if (sortBy === 'relevance-desc') {
         productsData.sort((a, b) => b.soldCount - a.soldCount);
     }
-    displayProducts(productsData);// Actualizar la lista mostrada
+    displayProducts(productsData);
 }
 
 //Función para restablecer el orden original
 function restoreOriginalOrder() {
-    productsData = [...originalProductsData];// Restaurar la lista original
-    displayProducts(productsData);// Mostrar productos en el orden original
+    productsData = [...originalProductsData];
+    displayProducts(productsData);
 }
 
-// Función para aplicar el rango de precios
+
 function applyPriceRange() {
     let minPrice = parseFloat(document.getElementById('min-price-input').value) || 0;
     let maxPrice = parseFloat(document.getElementById('max-price-input').value) || 4000000;
@@ -193,72 +182,31 @@ document.getElementById('sort-relevance-desc').addEventListener('click', functio
     sortProducts('relevance-desc');
 });
 
-// Configuración del botón para restaurar el orden original
 document.getElementById('restore-original-order').addEventListener('click', function() {
     restoreOriginalOrder();
 });
 
-// Manejar cambios manuales con clic
+// Manejar cambios manuales
 document.getElementById('apply-price-range').addEventListener('click', function() {
     applyPriceRange();
 });
 
- // Manejar cambios manuales con la tecla Enter
 document.getElementById('min-price-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         applyPriceRange();
-        this.blur(); // Desenfocar el campo de texto
-    }
-});
-document.getElementById('max-price-input').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        applyPriceRange();
-        this.blur(); // Desenfocar el campo de texto
+        this.blur();
     }
 });
 
-// Limpiar campos de texto del filtrado de precio
-const cajasDeTexto = document.querySelectorAll('#min-price-input, #max-price-input');// Selecciona las cajas de texto
-function borrarContenido(event) {// Función que borra el contenido de la caja de texto
+const cajasDeTexto = document.querySelectorAll('#min-price-input, #max-price-input');
+function deleteContent(event) {
     event.target.value = '';
-}
-// Añade el evento "focus" a todos los elementos seleccionados
+};
+
 cajasDeTexto.forEach(caja => {
-    caja.addEventListener('focus', borrarContenido);
+    caja.addEventListener('focus', deleteContent);
 });
 
-// Cargar productos al iniciar la página
 document.addEventListener('DOMContentLoaded', function() {
-    if (!localStorage.getItem('userRegistered')) {
-        window.location.replace('login.html');
-    }
     loadProducts();
-    //Cierre de sesión
-    document.getElementById("logOut").addEventListener("click",function(event){
-        event.preventDefault();
-        localStorage.removeItem('userRegistered');
-        window.location.replace("login.html");
-    })
-});
-
-const toggleButton = document.getElementById('toggle-mode');
-const icon = toggleButton.querySelector('i');
-
-// Verifica la preferencia almacenada en localStorage
-if (localStorage.getItem('mode') === 'dark') {
-  document.body.classList.add('dark-mode');
-  icon.classList.replace('fa-moon', 'fa-sun');
-}
-
-// Cambia entre los modos y almacena la preferencia
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  
-  if (document.body.classList.contains('dark-mode')) {
-    icon.classList.replace('fa-moon', 'fa-sun');
-    localStorage.setItem('mode', 'dark');
-  } else {
-    icon.classList.replace('fa-sun', 'fa-moon');
-    localStorage.setItem('mode', 'light');
-  }
 });
