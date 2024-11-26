@@ -1,11 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    if (!localStorage.getItem('userRegistered')) {
-        window.location.replace('login.html');
-    }
 
     // Obtiene el ID del producto del almacenamiento local
     const productId = localStorage.getItem('selectedProductId');
-    let product; // Declara 'product' en un ámbito más amplio
+    let product; 
 
     // Verifica si el ID existe
     if (productId) {
@@ -23,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Actualiza el contenido de la página con la información del producto
                 document.getElementById('product-name').textContent = product.name || 'Nombre no disponible';
                 document.getElementById('product-description').textContent = product.description || 'Descripción no disponible';
-                document.getElementById('product-price').textContent = product.cost !== undefined ? `Precio: $${product.cost.toFixed(2)}` : 'Precio no disponible';
+                document.getElementById('product-price').textContent = product.cost !== undefined ? `Precio:$${product.currency} ${product.cost.toFixed(2)}` : 'Precio no disponible';
                 document.getElementById('product-sold').textContent = product.soldCount !== undefined ? `Vendidos: ${product.soldCount}` : 'Cantidad no disponible';
 
                 // Manejo de imágenes en el carrusel
@@ -51,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     carouselItemsContainer.appendChild(noImagesMessage);
                 }
 
-                // Parte del botón de comprar y guardar en el carrito
+                // Botón de comprar y guardar en el carrito
                 const BuyingButton = document.getElementById('buying-button');
                 BuyingButton.addEventListener("click", function() {
                     const existingCart = JSON.parse(localStorage.getItem('cartItems')) || [];
@@ -66,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     existingCart.push(cartItem);
                     
-                    // Guarda en localStorage
                     localStorage.setItem('cartItems', JSON.stringify(existingCart));
                     alert("Producto agregado al carrito correctamente");
                     window.location.replace('cart.html');
@@ -95,18 +91,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Recorremos los comentarios y los agregamos al contenedor
                     data.forEach(comment => {
                         const commentDiv = document.createElement('div');
-                        commentDiv.classList.add('comentario', 'my-3', 'p-2', 'border');
+                        commentDiv.classList.add('comment', 'my-3', 'p-2', 'border');
 
                         const name = document.createElement('div');
-                        name.classList.add('nombre');
+                        name.classList.add('name');
                         name.textContent = comment.user;
 
                         const date = document.createElement('div');
-                        date.classList.add('fecha');
+                        date.classList.add('date');
                         date.textContent = new Date(comment.dateTime).toLocaleDateString();
                         
                         const rating = document.createElement('div');
-                        rating.classList.add('calificacion');
+                        rating.classList.add('qualification');
 
                         // Generar las estrellas
                         let stars = '';
@@ -136,19 +132,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         loadComments();
 
-
         // Parte de enviar y escribir comentarios
         const sendButton = document.getElementById('input-button'); 
-        sendButton.addEventListener('click', () => { // Le añadimos funcionalidad
+        sendButton.addEventListener('click', () => { 
             const emailInput = localStorage.getItem("userRegistered"); // Obtenemos correo del usuario
-            const nameInput = emailInput.split("@")[0]; // Extraemos solo el nombre del usuario
+            const nameInput = emailInput.split("@")[0]; 
 
-            const dateInput = new Date().toLocaleDateString(); // Genera la fecha automáticamente
-            const opinionInput = document.querySelector('textarea').value; // Cada una de las casillas que llenamos //
+            const dateInput = new Date().toLocaleDateString(); 
+            const opinionInput = document.querySelector('textarea').value; 
             const ratingInput = document.querySelector('input[name="rating"]:checked'); 
 
             if (opinionInput && ratingInput) { // verificamos si todos los campos están completos
-                const score = ratingInput.value; // hay que guardarlo en una constante porque si no se rompe 
+                const score = ratingInput.value; 
 
                 const newComment = { // creamos un objeto con la información correspondiente del comentario
                     user: nameInput,
@@ -159,23 +154,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Crear el div para el nuevo comentario
                 const commentDiv = document.createElement('div');
-                commentDiv.classList.add('comentario', 'my-3', 'p-2', 'border'); // Usar el mismo estilo que los comentarios de la API
+                commentDiv.classList.add('comment', 'my-3', 'p-2', 'border'); 
 
                 // Crear y agregar el nombre
                 const name = document.createElement('div');
-                name.classList.add('nombre');
+                name.classList.add('name');
                 name.textContent = newComment.user;
                 commentDiv.appendChild(name);
 
                 // Crear y agregar la fecha
                 const date = document.createElement('div');
-                date.classList.add('fecha');
+                date.classList.add('date');
                 date.textContent = newComment.dateTime;
                 commentDiv.appendChild(date);
 
                 // Crear y agregar la calificación con estrellas
                 const rating = document.createElement('div');
-                rating.classList.add('calificacion');
+                rating.classList.add('qualification');
                 let stars = '';
                 for (let i = 1; i <= 5; i++) {
                     stars += `<i class="fas fa-star ${i <= newComment.score ? 'text-warning' : 'text-muted'}"></i>`;
@@ -242,8 +237,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (product.relatedProducts && product.relatedProducts.length > 0) {
         fetchRelatedProducts(product.relatedProducts);
     }
-})
-.catch(error => console.error('Error al obtener la información del producto:', error));
+    })
+    .catch(error => console.error('Error al obtener la información del producto:', error));
 
 // Esta es la función que obtiene la información directa de los productos relacionados
 function fetchRelatedProducts(relatedProductIds) {
@@ -258,30 +253,4 @@ Promise.all(requests)
     })
     .catch(error => console.error('Error al cargar productos relacionados:', error));
 }
-//Modo noche/día
-const toggleButton = document.getElementById('toggle-mode');
-const icon = toggleButton.querySelector('i');
-// Verifica la preferencia almacenada en localStorage
-if (localStorage.getItem('mode') === 'dark') {
-  document.body.classList.add('dark-mode');
-  icon.classList.replace('fa-moon', 'fa-sun');
-}
-// Cambia entre los modos y almacena la preferencia
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  
-  if (document.body.classList.contains('dark-mode')) {
-    icon.classList.replace('fa-moon', 'fa-sun');
-    localStorage.setItem('mode', 'dark');
-  } else {
-    icon.classList.replace('fa-sun', 'fa-moon');
-    localStorage.setItem('mode', 'light');
-  }
-});
-//Cierre de sesión
-document.getElementById("logOut").addEventListener("click",function(event){
-    event.preventDefault();
-    localStorage.removeItem('userRegistered');
-    window.location.replace("login.html");
-})
 });
