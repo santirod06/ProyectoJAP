@@ -1,31 +1,49 @@
 document.addEventListener("DOMContentLoaded", function() {
-   let alertDanger = document.getElementById("alert-danger");
-   let btnCloseAlert = document.getElementById("btn-close-alert");
-    function showAlertError() {
+    let alertDanger = document.getElementById("alert-danger");
+    let btnCloseAlert = document.getElementById("btn-close-alert");
+
+    function showAlertError(message = "Credenciales incorrectas.") {
+        alertDanger.textContent = message; 
         alertDanger.style = "display:block; opacity: 1";
     }
-    
+
     function closeAlert() {
-            alertDanger.style.display = "none";
-            alertDanger.classList.remove('show'); 
+        alertDanger.style.display = "none";
+        alertDanger.classList.remove('show');
+    }
+
+    btnCloseAlert.addEventListener("click", closeAlert);
+
+    document.getElementById("get_into").addEventListener("click", async function(event) {
+        event.preventDefault();
+
+        const user = document.getElementById('user').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        if (!user || !password) {
+            showAlertError("Por favor completa todos los campos.");
+            return;
         }
-     btnCloseAlert.addEventListener("click", closeAlert);
-    
 
-document.getElementById("get_into").addEventListener("click", function(event) {
-    event.preventDefault(); 
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: user, password: password }),
+            });
 
-    const user = document.getElementById('user').value.trim();
-    const password = document.getElementById('password').value.trim();
+            if (!response.ok) {
+                throw new Error("Credenciales incorrectas.");
+            }
 
-    if (!user || !password) {
-        showAlertError(); 
-    } else {
-        window.location.replace('index.html');   
-    }
-    if (user && password) {
-        localStorage.setItem('userRegistered', user);
-        window.location.replace('index.html');
-    }
-});
+            const data = await response.json();
+            localStorage.setItem('token', data.token); 
+            localStorage.setItem('userRegistered', user); 
+
+            window.location.replace('index.html');
+        } catch (error) {
+            console.error("Error:", error);
+            showAlertError(error.message || "Error al iniciar sesión.");
+        }
+    });
 });
